@@ -1,0 +1,465 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Let's Science API",
+    "version": "0.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Quiz"
+    },
+    {
+      "name": "User"
+    }
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json; charset=utf-8": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "headers": {
+              "X-SESSION-TOKEN": {
+                "required": true,
+                "deprecated": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json; charset=utf-8": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "headers": {
+              "X-SESSION-TOKEN": {
+                "required": true,
+                "deprecated": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/restricted": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "headers": {
+              "X-SESSION-TOKEN": {
+                "required": true,
+                "deprecated": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWTAuthorization": []
+          }
+        ]
+      }
+    },
+    "/quiz": {
+      "post": {
+        "tags": [
+          "Quiz"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json; charset=utf-8": {
+              "schema": {
+                "$ref": "#/components/schemas/APIQuiz"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWTAuthorization": []
+          }
+        ]
+      }
+    },
+    "/quiz/{id}": {
+      "get": {
+        "tags": [
+          "Quiz"
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIQuiz"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWTAuthorization": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "APIQuiz": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "created_at",
+          "created_by",
+          "questions"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "created_by": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/APIQuizQuestion"
+            }
+          }
+        }
+      },
+      "APIQuizQuestion": {
+        "type": "object",
+        "required": [
+          "id",
+          "quiz_id",
+          "question",
+          "data"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "quiz_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "question": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/QuestionType"
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "MultipleChoiceQuestion": {
+        "type": "object",
+        "required": [
+          "answers",
+          "correct_answer"
+        ],
+        "properties": {
+          "answers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "correct_answer": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "NumericQuestion": {
+        "type": "object",
+        "required": [
+          "range_start",
+          "range_end"
+        ],
+        "properties": {
+          "range_start": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "range_end": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "QuestionType": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/QuestionType_MultipleChoiceQuestion"
+          },
+          {
+            "$ref": "#/components/schemas/QuestionType_NumericQuestion"
+          },
+          {
+            "$ref": "#/components/schemas/QuestionType_TrueOrFalseQuestion"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "MultipleChoice": "#/components/schemas/QuestionType_MultipleChoiceQuestion",
+            "Numeric": "#/components/schemas/QuestionType_NumericQuestion",
+            "TrueOrFalse": "#/components/schemas/QuestionType_TrueOrFalseQuestion"
+          }
+        }
+      },
+      "QuestionType_MultipleChoiceQuestion": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "MultipleChoice"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/MultipleChoiceQuestion"
+          }
+        ]
+      },
+      "QuestionType_NumericQuestion": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "Numeric"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/NumericQuestion"
+          }
+        ]
+      },
+      "QuestionType_TrueOrFalseQuestion": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "TrueOrFalse"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/TrueOrFalseQuestion"
+          }
+        ]
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "avatar_seed",
+          "is_guest"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "avatar_seed": {
+            "type": "string"
+          },
+          "is_guest": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TrueOrFalseQuestion": {
+        "type": "object",
+        "required": [
+          "correct_answer"
+        ],
+        "properties": {
+          "correct_answer": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "JWTAuthorization": {
+        "type": "apiKey",
+        "name": "X-SESSION-TOKEN",
+        "in": "cookie"
+      }
+    }
+  }
+}
