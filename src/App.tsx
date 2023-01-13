@@ -1,12 +1,8 @@
-import { useState } from 'react'
-import AuthForm from './Auth'
+import { useState } from "react";
+import Login from "./routes/login";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <AuthForm />
-  )
+  return <Login />;
 }
 
-export default App
+export default App;
