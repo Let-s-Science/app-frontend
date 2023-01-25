@@ -1,3 +1,4 @@
+import { Client } from "@lets-science/letsscience-client";
 import {
   TextInput,
   PasswordInput,
@@ -11,11 +12,9 @@ import {
   Button,
 } from "@mantine/core";
 
-import { APIClient } from "../../client";
-
 function Login() {
-  let client = new APIClient({
-    BASE: "http://localhost:3000",
+  let client = new Client({
+    BASE: "http://localhost:3000"
   });
 
   return (
