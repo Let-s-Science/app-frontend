@@ -22,6 +22,7 @@ import Challenges from "./routes/Challenges";
 import Profile from "./routes/Profile";
 import ContactUs from "./routes/ContactUs";
 import Privacy from "./routes/Privacy";
+import Signup from "./routes/Signup";
 
 function App() {
   return (
@@ -47,7 +48,8 @@ function App() {
               <Route path="/settings" element={<Settings />} />
               <Route path="/challenges" element={<Challenges />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/contactUs" element={<ContactUs />} />
+              <Route path="/contact-us" element={<ContactUs />} />
+              <Route path="/sign-up" element={<Signup />} />
 
               {/* Other */}
               <Route path="/404" element={<PageNotFound />} />
