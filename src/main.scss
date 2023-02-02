@@ -9,11 +9,17 @@ h1{
 }
 #header{
     position: -webkit-sticky;
-        /* Safari */
-        position: sticky;
-        top: 0;
+    /* Safari */
+    position: sticky;
+    top: 0;
     z-index:inherit;
 }
+
+.logo {
+    width: 4.648vh;
+    height: 4vh;
+}
+
 .img404{
     display:flex;
     align-items: center;

@@ -95,9 +95,9 @@ function HeaderSearch() {
           </Group>
 
           <Group>
-            <Group ml={50} spacing={5} className={classes.links}>
-              LOGO
-            </Group>
+            
+            <img className="logo" src={"/images/smallLogo.png"} alt="Logo" />
+            
           </Group>
         </div>
       </Header>
