@@ -24,6 +24,8 @@ import Profile from "./routes/Profile";
 import ContactUs from "./routes/ContactUs";
 import Privacy from "./routes/Privacy";
 import Signup from "./routes/Signup";
+import CheckAuthorisation from "./components/CheckAuthorisation";
+import Logout from "./components/Logout";
 
 function App() {
   return (
@@ -58,10 +60,12 @@ function App() {
                   <Route path="/404" element={<PageNotFound />} />
                   <Route path="/privacypolicy" element={<Privacy />} />
                   <Route path="*" element={<Navigate to="/404" replace />} />
+                  <Route path="/logout" element={<Logout />} />
                 </Routes>
               </Container>
             </Stack>
             <Footer />
+            <CheckAuthorisation />
           </Router>
         </NotificationsProvider>
       </MantineProvider>
