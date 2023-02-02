@@ -6,8 +6,9 @@ import {
   Navigate,
   Link,
 } from "react-router-dom";
-import { Container, Drawer } from "@mantine/core";
+import { Container, Drawer, MantineProvider } from "@mantine/core";
 import { Stack, Button } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 import "./main.scss";
 
 //Routes
@@ -27,39 +28,43 @@ import Signup from "./routes/Signup";
 function App() {
   return (
     <React.Fragment>
-      <Router>
-        <HeaderSearch />
-        <Stack
-          justify="space-between"
-          className="stack"
-          sx={(theme) => ({
-            backgroundColor:
-              theme.colorScheme === "dark"
-                ? theme.colors.dark[8]
-                : theme.colors.gray[0],
-            // height: "100%",
-          })}
-        >
-          <Container>
-            <Routes>
-              {/* general-pages */}
-              <Route path="/" element={<Start />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/challenges" element={<Challenges />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/contact-us" element={<ContactUs />} />
-              <Route path="/sign-up" element={<Signup />} />
+      <MantineProvider withNormalizeCSS withGlobalStyles>
+        <NotificationsProvider>
+          <Router>
+            <HeaderSearch />
+            <Stack
+              justify="space-between"
+              className="stack"
+              sx={(theme) => ({
+                backgroundColor:
+                  theme.colorScheme === "dark"
+                    ? theme.colors.dark[8]
+                    : theme.colors.gray[0],
+                // height: "100%",
+              })}
+            >
+              <Container>
+                <Routes>
+                  {/* general-pages */}
+                  <Route path="/" element={<Start />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/challenges" element={<Challenges />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/contact-us" element={<ContactUs />} />
+                  <Route path="/sign-up" element={<Signup />} />
 
-              {/* Other */}
-              <Route path="/404" element={<PageNotFound />} />
-              <Route path="/privacypolicy" element={<Privacy />} />
-              <Route path="*" element={<Navigate to="/404" replace />} />
-            </Routes>
-          </Container>
-        </Stack>
-        <Footer />
-      </Router>
+                  {/* Other */}
+                  <Route path="/404" element={<PageNotFound />} />
+                  <Route path="/privacypolicy" element={<Privacy />} />
+                  <Route path="*" element={<Navigate to="/404" replace />} />
+                </Routes>
+              </Container>
+            </Stack>
+            <Footer />
+          </Router>
+        </NotificationsProvider>
+      </MantineProvider>
     </React.Fragment>
   );
 }
