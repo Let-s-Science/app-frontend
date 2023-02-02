@@ -1,4 +1,4 @@
-import { Client } from "@lets-science/letsscience-client";
+import { Client, OpenAPI } from "@lets-science/letsscience-client";
 import {
   TextInput,
   PasswordInput,
@@ -15,6 +15,7 @@ import { lowerFirst } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { useClient } from "../hooks/useClient";
 
 function Signup() {
   const [user, setUser] = useState("");
@@ -22,10 +23,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [isregistered, setIsRegistered] = useState(false);
 
-  let client = new Client({
-    // BASE: "http://10.4.29.168:3000",
-    BASE: import.meta.env.VITE_BACKEND_URL,
-  });
+  let client = useClient();
 
   const onLogin = () => {
     const login = async () => {
@@ -35,6 +33,7 @@ function Signup() {
           password: password,
         })
         .then((resp) => {
+          localStorage.setItem('token', resp);
           setUser(resp);
           setIsRegistered(true);
         })

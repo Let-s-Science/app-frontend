@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Client } from "@lets-science/letsscience-client";
+import { Client, OpenAPI } from "@lets-science/letsscience-client";
+import { useClient } from "../hooks/useClient";
 
 function Profile() {
   const [user, setUser] = useState({});
-  let client = new Client({
-    BASE: import.meta.env.VITE_BACKEND_URL,
-    WITH_CREDENTIALS: true,
-  });
+  let client = useClient();
+
   useEffect(() => {
     const signup = async () => {
       client.user
-        .postApiUserSelf()
+        .getApiUserSelf()
         .then((resp) => {
           setUser(resp);
         })
