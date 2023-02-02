@@ -29,7 +29,7 @@ function App() {
   return (
     <React.Fragment>
       <MantineProvider withNormalizeCSS withGlobalStyles>
-        <NotificationsProvider>
+        <NotificationsProvider position="top-right">
           <Router>
             <HeaderSearch />
             <Stack

@@ -35,7 +35,7 @@ function Signup() {
           password: password,
         })
         .then((resp) => {
-          localStorage.setItem('token', resp);
+          localStorage.setItem("token", resp);
           setUser(resp);
           setIsRegistered(true);
         })
@@ -44,6 +44,10 @@ function Signup() {
             title: "There is something wrong!",
             message: "Please check your data and try again later!",
             autoClose: 5000,
+            color: "red",
+            icon: <IconAlertCircle />,
+            radius: "md",
+            disallowClose: true,
           });
           console.log(e);
         });
