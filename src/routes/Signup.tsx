@@ -68,20 +68,6 @@ function Signup() {
     };
     signup();
   };
-
-  //   useEffect(() => {
-  //     const login = async () => {
-  //       let result = await client.user.postApiRegister({
-  //         email: "",
-  //         password: "",
-  //         name: "",
-  //         avatar_seed: "",
-  //         is_guest: false,
-  //       });
-  //       setUser(result);
-  //     };
-  //     login();
-  //   }, []);
   if (isregistered) {
     return <Navigate to="/" />;
   }
@@ -131,7 +117,7 @@ function Signup() {
         />
 
         <Center className="centeredAvatar">
-          <Jazzicon diameter={90} seed={Math.round(Math.random() * 10000000)} />
+          <Jazzicon diameter={90} seed={parseInt(avatar_seed)} />
         </Center>
         <Center className="centeredAvatar">
           <Button
