@@ -24,8 +24,8 @@ function Signup() {
   const [isregistered, setIsRegistered] = useState(false);
 
   let client = new Client({
-    BASE: "http://10.4.29.168:3000",
-    // BASE: import.meta.env.BACKEND_URL,
+    // BASE: "http://10.4.29.168:3000",
+    BASE: import.meta.env.VITE_BACKEND_URL,
   });
 
   const onSignUp = () => {
