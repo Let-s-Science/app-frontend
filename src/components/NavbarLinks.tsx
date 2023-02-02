@@ -10,16 +10,20 @@ import {
   IconLink,
 } from "@tabler/icons";
 import { ThemeIcon, UnstyledButton, Group, Text } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 interface MainLinkProps {
   icon: React.ReactNode;
   color: string;
   label: string;
+  toLink: string;
 }
 
-function MainLink({ icon, color, label }: MainLinkProps) {
+function MainLink({ icon, color, label, toLink }: MainLinkProps) {
   return (
     <UnstyledButton
+      component={Link}
+      to={toLink}
       sx={(theme) => ({
         display: "block",
         width: "100%",
@@ -48,10 +52,30 @@ function MainLink({ icon, color, label }: MainLinkProps) {
 }
 
 const data = [
-  { icon: <IconSettings size={16} />, color: "teal", label: "Settings" },
-  { icon: <IconHeadset size={16} />, color: "violet", label: "Contact us" },
-  { icon: <IconLink size={16} />, color: "violet", label: "Our Website" },
-  { icon: <IconShield size={16} />, color: "grape", label: "Privacy policy" },
+  {
+    icon: <IconSettings size={16} />,
+    color: "teal",
+    label: "Settings",
+    toLink: "/settings",
+  },
+  {
+    icon: <IconHeadset size={16} />,
+    color: "violet",
+    label: "Contact us",
+    toLink: "/contactUs",
+  },
+  {
+    icon: <IconLink size={16} />,
+    color: "violet",
+    label: "Our Website",
+    toLink: "https://www.letsscience.eu/",
+  },
+  {
+    icon: <IconShield size={16} />,
+    color: "grape",
+    label: "Privacy policy",
+    toLink: "/privacypolicy",
+  },
 ];
 
 export function NavbarLinks() {
