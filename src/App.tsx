@@ -24,7 +24,7 @@ import Profile from "./routes/Profile";
 import ContactUs from "./routes/ContactUs";
 import Privacy from "./routes/Privacy";
 import Signup from "./routes/Signup";
-import CheckAuthorisation from "./components/CheckAuthorisation";
+import CheckAuthorization from "./components/CheckAuthorization";
 import Logout from "./components/Logout";
 
 function App() {
@@ -65,7 +65,7 @@ function App() {
               </Container>
             </Stack>
             <Footer />
-            <CheckAuthorisation />
+            <CheckAuthorization />
           </Router>
         </NotificationsProvider>
       </MantineProvider>
