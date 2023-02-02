@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 
 function Signup() {
   const [user, setUser] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isregistered, setIsRegistered] = useState(false);
@@ -27,12 +28,15 @@ function Signup() {
     // BASE: import.meta.env.BACKEND_URL,
   });
 
-  const onLogin = () => {
-    const login = async () => {
+  const onSignUp = () => {
+    const signup = async () => {
       client.user
-        .postApiLogin({
+        .postApiRegister({
           email: email,
           password: password,
+          name: name,
+          avatar_seed: name,
+          is_guest: false,
         })
         .then((resp) => {
           setUser(resp);
@@ -42,7 +46,7 @@ function Signup() {
           console.log(e);
         });
     };
-    login();
+    signup();
   };
 
   //   useEffect(() => {
@@ -70,16 +74,24 @@ function Signup() {
           fontWeight: 900,
         })}
       >
-        Welcome back!
+        Welcome!
       </Title>
       <Text color="dimmed" size="sm" align="center" mt={5}>
-        Do not have an account yet?{" "}
-        <Anchor<"a"> href="/sign-up" size="sm">
-          Sign up
+        Do you have an account yet?{" "}
+        <Anchor<"a"> href="/login" size="sm">
+          Log in
         </Anchor>
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        <TextInput
+          label="Name"
+          placeholder="Your Name"
+          required
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+        />
         <TextInput
           label="Email"
           placeholder="yourname@domain.com"
@@ -107,8 +119,8 @@ function Signup() {
             Forgot password?
           </Anchor>
         </Group>
-        <Button fullWidth mt="xl" onClick={onLogin}>
-          Log in
+        <Button fullWidth mt="xl" onClick={onSignUp}>
+          Sign up
         </Button>
       </Paper>
     </Container>
