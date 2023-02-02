@@ -12,9 +12,11 @@ import {
   Button,
 } from "@mantine/core";
 import { lowerFirst } from "@mantine/hooks";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { showNotification } from "@mantine/notifications";
+import { IconAlertCircle } from "@tabler/icons";
 import { useClient } from "../hooks/useClient";
 
 function Signup() {
@@ -38,6 +40,11 @@ function Signup() {
           setIsRegistered(true);
         })
         .catch((e) => {
+          showNotification({
+            title: "There is something wrong!",
+            message: "Please check your data and try again later!",
+            autoClose: 5000,
+          });
           console.log(e);
         });
     };
@@ -61,56 +68,58 @@ function Signup() {
     return <Navigate to="/" />;
   }
   return (
-    <Container size={420} my={40}>
-      <Title
-        align="center"
-        sx={(theme) => ({
-          fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-          fontWeight: 900,
-        })}
-      >
-        Welcome back!
-      </Title>
-      <Text color="dimmed" size="sm" align="center" mt={5}>
-        Do not have an account yet?{" "}
-        <Anchor<"a"> href="/sign-up" size="sm">
-          Sign up
-        </Anchor>
-      </Text>
-
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <TextInput
-          label="Email"
-          placeholder="yourname@domain.com"
-          required
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
-        <PasswordInput
-          label="Password"
-          placeholder="Your password"
-          required
-          mt="md"
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-        />
-        <Group position="apart" mt="lg">
-          <Checkbox label="Remember me" sx={{ lineHeight: 1 }} />
-          <Anchor<"a">
-            onClick={(event) => event.preventDefault()}
-            href="#"
-            size="sm"
-          >
-            Forgot password?
+    <React.Fragment>
+      <Container size={420} my={40}>
+        <Title
+          align="center"
+          sx={(theme) => ({
+            fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+            fontWeight: 900,
+          })}
+        >
+          Welcome back!
+        </Title>
+        <Text color="dimmed" size="sm" align="center" mt={5}>
+          Do not have an account yet?{" "}
+          <Anchor<"a"> href="/sign-up" size="sm">
+            Sign up
           </Anchor>
-        </Group>
-        <Button fullWidth mt="xl" onClick={onLogin}>
-          Log in
-        </Button>
-      </Paper>
-    </Container>
+        </Text>
+
+        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+          <TextInput
+            label="Email"
+            placeholder="yourname@domain.com"
+            required
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+          <PasswordInput
+            label="Password"
+            placeholder="Your password"
+            required
+            mt="md"
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+          <Group position="apart" mt="lg">
+            <Checkbox label="Remember me" sx={{ lineHeight: 1 }} />
+            <Anchor<"a">
+              onClick={(event) => event.preventDefault()}
+              href="#"
+              size="sm"
+            >
+              Forgot password?
+            </Anchor>
+          </Group>
+          <Button fullWidth mt="xl" onClick={onLogin}>
+            Log in
+          </Button>
+        </Paper>
+      </Container>
+    </React.Fragment>
   );
 }
 
