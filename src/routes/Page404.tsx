@@ -7,7 +7,7 @@ function Page404() {
     <div className="e404">
       <div>
         <img
-          src="../../public/images/shockedcat.jpeg"
+          src="/images/shockedcat.jpeg"
           alt="ups gefunden!"
           className="img404"
         />
