@@ -10,17 +10,20 @@ import {
   Container,
   Group,
   Button,
+  Center,
 } from "@mantine/core";
 import { lowerFirst } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import Jazzicon from "react-jazzicon";
 
 function Signup() {
   const [user, setUser] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [avatar_seed, setAvatar_Seed] = useState("");
   const [isregistered, setIsRegistered] = useState(false);
 
   let client = new Client({
@@ -35,7 +38,7 @@ function Signup() {
           email: email,
           password: password,
           name: name,
-          avatar_seed: name,
+          avatar_seed: avatar_seed,
           is_guest: false,
         })
         .then((resp) => {
@@ -109,6 +112,23 @@ function Signup() {
             setPassword(event.target.value);
           }}
         />
+
+
+        <Center className="centeredAvatar">
+        <Jazzicon diameter={90} seed={Math.round(Math.random() * 10000000)} />
+        </Center>
+        <Center className="centeredAvatar">
+          <Button
+            className="avatarButton"
+            onClick={() => {
+              let result = Math.floor(Math.random() * 10000)
+              setAvatar_Seed(result + "");
+            }}
+          >
+            Change Avatar
+          </Button>
+        </Center>
+
         <Group position="apart" mt="lg">
           <Checkbox label="Remember me" sx={{ lineHeight: 1 }} />
           <Anchor<"a">
