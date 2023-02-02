@@ -17,6 +17,9 @@ import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Jazzicon from "react-jazzicon";
+import { useClient } from "../hooks/useClient";
+import { showNotification } from "@mantine/notifications";
+import { IconAlertCircle, IconCircleCheck } from "@tabler/icons";
 
 function Signup() {
   const [user, setUser] = useState("");
@@ -26,10 +29,7 @@ function Signup() {
   const [avatar_seed, setAvatar_Seed] = useState("");
   const [isregistered, setIsRegistered] = useState(false);
 
-  let client = new Client({
-    // BASE: "http://10.4.29.168:3000",
-    BASE: import.meta.env.VITE_BACKEND_URL,
-  });
+  let client = useClient();
 
   const onSignUp = () => {
     const signup = async () => {
@@ -43,9 +43,26 @@ function Signup() {
         })
         .then((resp) => {
           setUser(resp);
+          showNotification({
+            title: "Yeah! Welcome on board!",
+            message: "Please check your Mails and verify your Email-Address",
+            autoClose: false,
+            color: "green",
+            icon: <IconCircleCheck />,
+            radius: "md",
+          });
           setIsRegistered(true);
         })
         .catch((e) => {
+          showNotification({
+            title: "There is something wrong!",
+            message: "Please check your data and try again later!",
+            autoClose: 5000,
+            color: "red",
+            icon: <IconAlertCircle />,
+            radius: "md",
+            disallowClose: true,
+          });
           console.log(e);
         });
     };
@@ -113,15 +130,14 @@ function Signup() {
           }}
         />
 
-
         <Center className="centeredAvatar">
-        <Jazzicon diameter={90} seed={Math.round(Math.random() * 10000000)} />
+          <Jazzicon diameter={90} seed={Math.round(Math.random() * 10000000)} />
         </Center>
         <Center className="centeredAvatar">
           <Button
             className="avatarButton"
             onClick={() => {
-              let result = Math.floor(Math.random() * 10000)
+              let result = Math.floor(Math.random() * 10000);
               setAvatar_Seed(result + "");
             }}
           >
