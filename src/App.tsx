@@ -43,7 +43,7 @@ function App() {
                 // height: "100%",
               })}
             >
-              <Container>
+              
                 <Routes>
                   {/* general-pages */}
                   <Route path="/" element={<Start />} />
@@ -59,7 +59,7 @@ function App() {
                   <Route path="/privacypolicy" element={<Privacy />} />
                   <Route path="*" element={<Navigate to="/404" replace />} />
                 </Routes>
-              </Container>
+              
             </Stack>
             <Footer />
           </Router>
