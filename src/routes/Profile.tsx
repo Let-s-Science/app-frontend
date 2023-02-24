@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Client, OpenAPI, User } from "@lets-science/letsscience-client";
 import { useClient } from "../hooks/useClient";
+import { Center, Paper } from "@mantine/core";
+import Jazzicon from "react-jazzicon";
 
 function Profile() {
-  const [user, setUser] = useState<User|null>(null);
+  const [user, setUser] = useState<User | null>(null);
   let client = useClient();
 
   useEffect(() => {
@@ -12,7 +14,6 @@ function Profile() {
         .getApiUserSelf()
         .then((resp) => {
           setUser(resp);
-          
         })
         .catch((e) => {
           console.log(e);
@@ -23,18 +24,26 @@ function Profile() {
     return () => {};
   }, []);
 
-  if(user === null) {
-    return(
+  if (user === null) {
+    return (
       <React.Fragment>
-
+        Couldn't load data
       </React.Fragment>
-    )
+    );
   }
 
   return (
     <React.Fragment>
-      <h1>{user.name} Site</h1>
-      <br />
+      <Center className="centeredAvatar">
+        <Jazzicon diameter={90} seed={parseInt(user.avatar_seed)} />
+      </Center>
+      <h1>{user.name}'s Site</h1>
+      <div className="informationTitle">E-Mail:</div>
+      <div className="userInformation">{user.email}</div>
+      <div className="informationTitle">Created At:</div>
+      <div className="userInformation">{user.created_at}</div>
+      <div className="informationTitle">Score:</div>
+      <div className="userInformation">{user.score}</div>
     </React.Fragment>
   );
 }

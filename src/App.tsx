@@ -45,7 +45,7 @@ function App() {
                 // height: "100%",
               })}
             >
-              <Container>
+              
                 <Routes>
                   {/* general-pages */}
                   <Route path="/" element={<Start />} />
@@ -62,7 +62,7 @@ function App() {
                   <Route path="*" element={<Navigate to="/404" replace />} />
                   <Route path="/logout" element={<Logout />} />
                 </Routes>
-              </Container>
+              
             </Stack>
             <Footer />
             <CheckAuthorization />
