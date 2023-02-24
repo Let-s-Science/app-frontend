@@ -16,7 +16,6 @@ function CheckAuthorization() {
         navigate("/login");
       } else {
         console.log("Authorized!");
-        navigate("/"); //das wird noch n Fehler auslösen
       }
     }
   }, []);
