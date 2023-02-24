@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "@lets-science/letsscience-client";
 import { useClient } from "../hooks/useClient";
 import { ActionIcon, Card, Center, Paper, Title } from "@mantine/core";
@@ -7,7 +7,7 @@ import { StatsRing } from "../components/StatsRing";
 import { berechneLevel, berechneFortschritt } from "../util";
 import { IconPencil } from "@tabler/icons";
 
-function Profile() {
+const Profile = () => {
   const [user, setUser] = useState<User | null>(null);
   let client = useClient();
 
@@ -29,15 +29,14 @@ function Profile() {
 
   const editEmail = () => {
     //Hier muss die Backendanbindung hin
-    console.log("Test");
   };
 
   if (user === null) {
-    return <React.Fragment>Couldn't load data</React.Fragment>;
+    return <>Couldn't load data</>;
   }
 
   return (
-    <React.Fragment>
+    <>
       <Center className="centeredAvatar">
         <Jazzicon diameter={90} seed={parseInt(user.avatar_seed)} />
       </Center>
@@ -71,8 +70,8 @@ function Profile() {
           ]}
         />
       </div>
-    </React.Fragment>
+    </>
   );
-}
+};
 
 export default Profile;

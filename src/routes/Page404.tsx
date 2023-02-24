@@ -1,8 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import "../main.scss";
 
-function Page404() {
+const Page404 = () => {
   return (
     <div className="e404">
       <div>
@@ -20,7 +18,6 @@ function Page404() {
       </div>
     </div>
   );
-  //   return <div>Ouups, Page not Found 404</div>;
-}
+};
 
 export default Page404;

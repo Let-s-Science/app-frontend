@@ -1,19 +1,16 @@
 import {
-  ColorScheme,
   Group,
   Switch,
   useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core";
-import { useLocalStorage } from "@mantine/hooks";
 import { IconMoonStars, IconSun } from "@tabler/icons";
-import React from "react";
 
-function Settings() {
+const Settings = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
   return (
-    <React.Fragment>
+    <>
       <h1>Settings</h1>
       <Group position="center" my={30}>
         <Switch
@@ -30,9 +27,8 @@ function Settings() {
           }
         />
       </Group>
-    </React.Fragment>
+    </>
   );
-  return <></>;
-}
+};
 
 export default Settings;

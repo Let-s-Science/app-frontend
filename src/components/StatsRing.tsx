@@ -23,7 +23,7 @@ const icons = {
   down: IconArrowDownRight,
 };
 
-export function StatsRing({ data }: StatsRingProps) {
+export const StatsRing = ({ data }: StatsRingProps) => {
   const stats = data.map((stat) => {
     const Icon = icons[stat.icon];
     return (
@@ -58,4 +58,4 @@ export function StatsRing({ data }: StatsRingProps) {
       {stats}
     </SimpleGrid>
   );
-}
+};

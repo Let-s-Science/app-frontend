@@ -1,30 +1,22 @@
-import { Box, Group, ActionIcon, Navbar, ScrollArea } from "@mantine/core";
-import { IconSun, IconMoonStars } from "@tabler/icons";
+import { Box, Navbar, ScrollArea } from "@mantine/core";
 import React from "react";
 import NavbarIcons from "./NavbarIcons";
 import { NavbarLinks } from "./NavbarLinks";
 
-function NavbarContent() {
+const NavbarContent = () => {
   return (
-    <React.Fragment>
-      <Navbar height={600} p="xs" width={{ base: 300 }}>
-        {/* <Navbar.Section mt="xs">
-            <Brand />
-          </Navbar.Section> */}
+    <>
+      <Navbar height={600} withBorder={false}>
         <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
-          <Box py="md">
-            <NavbarLinks />
-          </Box>
+          <NavbarLinks />
         </Navbar.Section>
         <Navbar.Section>
-          <Box py="md" className="socialLinks">
-            <NavbarIcons />
-          </Box>
+          <NavbarIcons />
           {/* Todo: Logout */}
         </Navbar.Section>
       </Navbar>
-    </React.Fragment>
+    </>
   );
-}
+};
 
 export default NavbarContent;

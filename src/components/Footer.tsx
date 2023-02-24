@@ -2,7 +2,7 @@ import { ActionIcon, Center, Group, Paper } from "@mantine/core";
 import { IconHome, IconTargetArrow, IconUser } from "@tabler/icons";
 import { Link } from "react-router-dom";
 
-function Footer() {
+const Footer = () => {
   return (
     <Paper component="div" className="footer">
       <ActionIcon component={Link} to="/" size="lg" radius="xl">
@@ -28,6 +28,6 @@ function Footer() {
       </ActionIcon>
     </Paper>
   );
-}
+};
 
 export default Footer;

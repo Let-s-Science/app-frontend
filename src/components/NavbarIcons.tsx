@@ -4,11 +4,10 @@ import {
   IconBrandInstagram,
   IconBrandTiktok,
 } from "@tabler/icons";
-import React from "react";
 
-function NavbarIcons() {
+const NavbarIcons = () => {
   return (
-    <React.Fragment>
+    <>
       <ActionIcon component="a" href="/">
         <IconBrandFacebook />
       </ActionIcon>
@@ -21,8 +20,8 @@ function NavbarIcons() {
       <ActionIcon component="a" href="https://www.tiktok.com/@letsscience.eu">
         <IconBrandTiktok />
       </ActionIcon>
-    </React.Fragment>
+    </>
   );
-}
+};
 
 export default NavbarIcons;

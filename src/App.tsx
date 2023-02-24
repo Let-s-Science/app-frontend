@@ -1,22 +1,18 @@
-import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
-  Link,
 } from "react-router-dom";
 import {
   ColorScheme,
   ColorSchemeProvider,
-  Container,
-  Drawer,
   MantineProvider,
 } from "@mantine/core";
-import { Stack, Button } from "@mantine/core";
+import { Stack } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import "./main.scss";
-import { useColorScheme, useLocalStorage } from "@mantine/hooks";
+import { useLocalStorage } from "@mantine/hooks";
 
 //Routes
 import Login from "./routes/login";
@@ -35,18 +31,19 @@ import CheckAuthorization from "./components/CheckAuthorization";
 import Logout from "./components/Logout";
 import Challenge from "./routes/Challenge";
 
-function App() {
+const App = () => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: "mantine-color-scheme",
     defaultValue: "light",
     getInitialValueInEffect: true,
   });
+
   const toggleColorScheme = (value?: ColorScheme) => {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
   };
 
   return (
-    <React.Fragment>
+    <>
       <ColorSchemeProvider
         colorScheme={colorScheme}
         toggleColorScheme={toggleColorScheme}
@@ -67,7 +64,6 @@ function App() {
                     theme.colorScheme === "dark"
                       ? theme.colors.dark[8]
                       : theme.colors.gray[0],
-                  // height: "100%",
                 })}
               >
                 <Routes>
@@ -94,8 +90,8 @@ function App() {
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
-    </React.Fragment>
+    </>
   );
-}
+};
 
 export default App;

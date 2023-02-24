@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { useSearchParams } from "react-router-dom";
 
-function CheckAuthorization() {
+const CheckAuthorization = () => {
   const navigate = useNavigate();
   useEffect(() => {
     console.log(localStorage.getItem("token"));
@@ -21,6 +21,6 @@ function CheckAuthorization() {
   }, []);
 
   return <></>;
-}
+};
 
 export default CheckAuthorization;

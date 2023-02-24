@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  IconGitPullRequest,
-  IconAlertCircle,
-  IconMessages,
-  IconDatabase,
-  IconSettings,
-  IconShield,
-  IconHeadset,
-  IconLink,
-} from "@tabler/icons";
+import { IconSettings, IconShield, IconHeadset, IconLink } from "@tabler/icons";
 import { ThemeIcon, UnstyledButton, Group, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
 
@@ -19,7 +10,7 @@ interface MainLinkProps {
   toLink: string;
 }
 
-function MainLink({ icon, color, label, toLink }: MainLinkProps) {
+const MainLink = ({ icon, color, label, toLink }: MainLinkProps) => {
   return (
     <UnstyledButton
       component={Link}
@@ -49,7 +40,7 @@ function MainLink({ icon, color, label, toLink }: MainLinkProps) {
       </Group>
     </UnstyledButton>
   );
-}
+};
 
 const data = [
   {
@@ -78,7 +69,7 @@ const data = [
   },
 ];
 
-export function NavbarLinks() {
+export const NavbarLinks = () => {
   const links = data.map((link) => <MainLink {...link} key={link.label} />);
   return <div>{links}</div>;
-}
+};
