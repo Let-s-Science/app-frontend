@@ -31,6 +31,7 @@ import Signup from "./routes/Signup";
 import CheckAuthorization from "./components/CheckAuthorization";
 import Logout from "./components/Logout";
 import Challenge from "./routes/Challenge";
+import Quiz from "./routes/Quiz";
 
 const App = () => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -78,6 +79,7 @@ const App = () => {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/contact-us" element={<ContactUs />} />
                     <Route path="/sign-up" element={<Signup />} />
+                    <Route path="/quiz" element={<Quiz />} />
 
                     {/* Other */}
                     <Route path="/404" element={<PageNotFound />} />

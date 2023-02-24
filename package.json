@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.10.0",
     "@emotion/react": "^11.10.5",
     "@lets-science/letsscience-client": "^0.2.1",
     "@mantine/core": "^5.10.0",
@@ -19,6 +20,8 @@
     "@mantine/nprogress": "^5.10.0",
     "@tabler/icons": "^1.119.0",
     "dayjs": "^1.11.7",
+    "email-js": "^2.0.2",
+    "emailjs": "^4.0.1",
     "env": "^0.0.2",
     "process": "^0.11.10",
     "react": "^18.2.0",

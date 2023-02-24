@@ -4,7 +4,7 @@ const Logout = () => {
   } catch (error) {
     console.log(error);
   }
-  return <></>;
+  return <Navigate to="/login"></Navigate>;
 };
 
 export default Logout;

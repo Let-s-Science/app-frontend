@@ -28,6 +28,14 @@ const Settings = () => {
           }
         />
       </Group>
+           <Center>
+      <Link to="/logout">
+      <Button>
+        <IconLogout></IconLogout>
+            Logout
+      </Button>
+      </Link>
+     </Center>
     </>
   );
 };
