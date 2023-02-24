@@ -1,5 +1,5 @@
 import { Challenge, UserChallenge } from "@lets-science/letsscience-client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ChallengeCard from "../components/ChallengeCard";
 import { useClient } from "../hooks/useClient";
 import ChallengeProgressCard from "../components/ChallengeProgressCard";

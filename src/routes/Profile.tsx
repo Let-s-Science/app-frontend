@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Client, OpenAPI, User } from "@lets-science/letsscience-client";
+import { User } from "@lets-science/letsscience-client";
 import { useClient } from "../hooks/useClient";
 import { ActionIcon, Card, Center, Paper, Title } from "@mantine/core";
 import Jazzicon from "react-jazzicon";
