@@ -26,7 +26,7 @@ const Signup = () => {
   const [avatar_seed, setAvatar_Seed] = useState("");
   const [isregistered, setIsRegistered] = useState(false);
 
-  let client = useClient();
+  const client = useClient();
 
   const onSignUp = () => {
     const signup = async () => {
@@ -116,7 +116,7 @@ const Signup = () => {
           <Button
             className="avatarButton"
             onClick={() => {
-              let result = Math.floor(Math.random() * 10000);
+              const result = Math.floor(Math.random() * 10000);
               setAvatar_Seed(result + "");
             }}
           >

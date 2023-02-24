@@ -9,7 +9,7 @@ import { IconPencil } from "@tabler/icons";
 
 const Profile = () => {
   const [user, setUser] = useState<User | null>(null);
-  let client = useClient();
+  const client = useClient();
 
   useEffect(() => {
     const getUser = async () => {

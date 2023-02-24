@@ -6,7 +6,7 @@ import { berechneFortschritt, berechneLevel } from "../util";
 import { Card, Title } from "@mantine/core";
 
 const Start = () => {
-  let client = useClient();
+  const client = useClient();
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
