@@ -30,28 +30,32 @@ const Start = () => {
   }
 
   return (
-    <Stack>
-      <Title order={1}>Welcome back, {user.name}</Title>
-      <Card shadow="sm" p="lg" radius="md" withBorder>
-        <Card.Section>
-          <br />
-          <Title>{user.score}</Title>
-          <Title order={3} style={{ textAlign: "center" }}>
-            Your current Score!
-          </Title>
-        </Card.Section>
-      </Card>
-      <StatsRing
-        data={[
-          {
-            label: "You are currently Level",
-            stats: berechneLevel(user.score),
-            progress: berechneFortschritt(user.score),
-            color: "green",
-            icon: "up",
-          },
-        ]}
-      />
+    <Stack spacing="xl">
+      <div>
+        <Title order={1}>Welcome back, {user.name}</Title>
+        <Stack>
+          <Card shadow="sm" p="lg" radius="md" withBorder>
+            <Card.Section>
+              <br />
+              <Title>{user.score}</Title>
+              <Title order={3} style={{ textAlign: "center" }}>
+                Your current Score!
+              </Title>
+            </Card.Section>
+          </Card>
+          <StatsRing
+            data={[
+              {
+                label: "You are currently Level",
+                stats: berechneLevel(user.score),
+                progress: berechneFortschritt(user.score),
+                color: "green",
+                icon: "up",
+              },
+            ]}
+          />
+        </Stack>
+      </div>
       <Title order={2}>Your Challenges</Title>
       <Title order={2}>Your Quiz</Title>
       <Title order={2}>Contact us!</Title>

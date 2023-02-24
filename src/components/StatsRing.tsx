@@ -53,9 +53,5 @@ export const StatsRing = ({ data }: StatsRingProps) => {
       </Paper>
     );
   });
-  return (
-    <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
-      {stats}
-    </SimpleGrid>
-  );
+  return <>{stats}</>;
 };
