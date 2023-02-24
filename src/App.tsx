@@ -13,7 +13,7 @@ import {
 import { Stack } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import "./main.scss";
-import { useLocalStorage } from "@mantine/hooks";
+import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
 //Routes
 import Login from "./routes/Login";
@@ -43,6 +43,8 @@ const App = () => {
   const toggleColorScheme = (value?: ColorScheme) => {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
   };
+
+  useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   return (
     <>
