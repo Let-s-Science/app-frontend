@@ -26,7 +26,8 @@
     "react-jazzicon": "^1.0.4",
     "react-router": "^6.6.2",
     "react-router-dom": "^6.6.2",
-    "sass": "^1.57.1"
+    "sass": "^1.57.1",
+    "ts-auto-mock": "^3.6.4"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",

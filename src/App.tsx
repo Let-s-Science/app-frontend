@@ -35,6 +35,7 @@ function App() {
             <Stack
               justify="space-between"
               className="stack"
+              align="stretch"
               sx={(theme) => ({
                 backgroundColor:
                   theme.colorScheme === "dark"
@@ -43,23 +44,21 @@ function App() {
                 // height: "100%",
               })}
             >
-              <Container>
-                <Routes>
-                  {/* general-pages */}
-                  <Route path="/" element={<Start />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/settings" element={<Settings />} />
-                  <Route path="/challenges" element={<Challenges />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/contact-us" element={<ContactUs />} />
-                  <Route path="/sign-up" element={<Signup />} />
+              <Routes>
+                {/* general-pages */}
+                <Route path="/" element={<Start />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/challenges" element={<Challenges />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/contact-us" element={<ContactUs />} />
+                <Route path="/sign-up" element={<Signup />} />
 
-                  {/* Other */}
-                  <Route path="/404" element={<PageNotFound />} />
-                  <Route path="/privacypolicy" element={<Privacy />} />
-                  <Route path="*" element={<Navigate to="/404" replace />} />
-                </Routes>
-              </Container>
+                {/* Other */}
+                <Route path="/404" element={<PageNotFound />} />
+                <Route path="/privacypolicy" element={<Privacy />} />
+                <Route path="*" element={<Navigate to="/404" replace />} />
+              </Routes>
             </Stack>
             <Footer />
           </Router>
