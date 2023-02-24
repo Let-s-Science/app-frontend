@@ -24,12 +24,14 @@ import Profile from "./routes/Profile";
 import ContactUs from "./routes/ContactUs";
 import Privacy from "./routes/Privacy";
 import Signup from "./routes/Signup";
+import CheckAuthorization from "./components/CheckAuthorization";
+import Logout from "./components/Logout";
 
 function App() {
   return (
     <React.Fragment>
       <MantineProvider withNormalizeCSS withGlobalStyles>
-        <NotificationsProvider>
+        <NotificationsProvider position="top-right">
           <Router>
             <HeaderSearch />
             <Stack
@@ -43,24 +45,26 @@ function App() {
                     : theme.colors.gray[0],
                 // height: "100%",
               })}
-            >
-              <Routes>
-                {/* general-pages */}
-                <Route path="/" element={<Start />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/challenges" element={<Challenges />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/contact-us" element={<ContactUs />} />
-                <Route path="/sign-up" element={<Signup />} />
+            > 
+                <Routes>
+                  {/* general-pages */}
+                  <Route path="/" element={<Start />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/challenges" element={<Challenges />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/contact-us" element={<ContactUs />} />
+                  <Route path="/sign-up" element={<Signup />} />
 
-                {/* Other */}
-                <Route path="/404" element={<PageNotFound />} />
-                <Route path="/privacypolicy" element={<Privacy />} />
-                <Route path="*" element={<Navigate to="/404" replace />} />
-              </Routes>
+                  {/* Other */}
+                  <Route path="/404" element={<PageNotFound />} />
+                  <Route path="/privacypolicy" element={<Privacy />} />
+                  <Route path="*" element={<Navigate to="/404" replace />} />
+                  <Route path="/logout" element={<Logout />} />
+                </Routes>
             </Stack>
             <Footer />
+            <CheckAuthorization />
           </Router>
         </NotificationsProvider>
       </MantineProvider>
