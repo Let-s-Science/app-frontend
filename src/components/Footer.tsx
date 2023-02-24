@@ -1,12 +1,10 @@
-import { Button } from "@mantine/core";
-import React from "react";
 import { ActionIcon } from "@mantine/core";
 import { IconHome, IconTargetArrow, IconUser } from "@tabler/icons";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <div className="footer">
-      {/* <a href="/"> */}
       <ActionIcon
         component="a"
         href="/"
@@ -16,17 +14,16 @@ function Footer() {
       >
         <IconHome size={26} />
       </ActionIcon>
-      {/* </a> */}
-      <a href="/challenges">
+      <Link to="/challenges">
         <ActionIcon size="lg" radius="xl" variant="transparent">
           <IconTargetArrow size={26} />
         </ActionIcon>
-      </a>
-      <a href="/profile">
+      </Link>
+      <Link to="/profile">
         <ActionIcon size="lg" radius="xl" variant="transparent">
           <IconUser size={26} />
         </ActionIcon>
-      </a>
+      </Link>
     </div>
   );
 }
