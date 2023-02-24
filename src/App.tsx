@@ -41,49 +41,59 @@ function App() {
     defaultValue: "light",
     getInitialValueInEffect: true,
   });
-  const toggleColorScheme = (value?: ColorScheme) =>
+  const toggleColorScheme = (value?: ColorScheme) => {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+  };
 
   return (
     <React.Fragment>
-      <MantineProvider withNormalizeCSS withGlobalStyles>
-        <NotificationsProvider position="top-right">
-          <Router>
-            <HeaderSearch />
-            <Stack
-              className="stack"
-              align="stretch"
-              sx={(theme) => ({
-                backgroundColor:
-                  theme.colorScheme === "dark"
-                    ? theme.colors.dark[8]
-                    : theme.colors.gray[0],
-                // height: "100%",
-              })}
-            >
-              <Routes>
-                {/* general-pages */}
-                <Route path="/" element={<Start />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/challenges" element={<Challenges />} />
-                <Route path="/challenge/:id" element={<Challenge />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/contact-us" element={<ContactUs />} />
-                <Route path="/sign-up" element={<Signup />} />
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          theme={{ colorScheme }}
+          withNormalizeCSS
+          withGlobalStyles
+        >
+          <NotificationsProvider position="top-right">
+            <Router>
+              <HeaderSearch />
+              <Stack
+                className="stack"
+                align="stretch"
+                sx={(theme) => ({
+                  backgroundColor:
+                    theme.colorScheme === "dark"
+                      ? theme.colors.dark[8]
+                      : theme.colors.gray[0],
+                  // height: "100%",
+                })}
+              >
+                <Routes>
+                  {/* general-pages */}
+                  <Route path="/" element={<Start />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/challenges" element={<Challenges />} />
+                  <Route path="/challenge/:id" element={<Challenge />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/contact-us" element={<ContactUs />} />
+                  <Route path="/sign-up" element={<Signup />} />
 
-                {/* Other */}
-                <Route path="/404" element={<PageNotFound />} />
-                <Route path="/privacypolicy" element={<Privacy />} />
-                <Route path="*" element={<Navigate to="/404" replace />} />
-                <Route path="/logout" element={<Logout />} />
-              </Routes>
-            </Stack>
-            <Footer />
-            <CheckAuthorization />
-          </Router>
-        </NotificationsProvider>
-      </MantineProvider>
+                  {/* Other */}
+                  <Route path="/404" element={<PageNotFound />} />
+                  <Route path="/privacypolicy" element={<Privacy />} />
+                  <Route path="*" element={<Navigate to="/404" replace />} />
+                  <Route path="/logout" element={<Logout />} />
+                </Routes>
+              </Stack>
+              <Footer />
+              <CheckAuthorization />
+            </Router>
+          </NotificationsProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </React.Fragment>
   );
 }
