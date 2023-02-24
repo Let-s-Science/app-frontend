@@ -15,7 +15,7 @@ import "./main.scss";
 import { useLocalStorage } from "@mantine/hooks";
 
 //Routes
-import Login from "./routes/login";
+import Login from "./routes/Login";
 import Start from "./routes/Start";
 
 import PageNotFound from "./routes/Page404";
