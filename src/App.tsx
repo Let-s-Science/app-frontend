@@ -35,7 +35,6 @@ function App() {
           <Router>
             <HeaderSearch />
             <Stack
-              justify="space-between"
               className="stack"
               sx={(theme) => ({
                 backgroundColor:
