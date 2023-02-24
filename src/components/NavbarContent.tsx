@@ -1,17 +1,20 @@
-import { Box, Navbar, ScrollArea } from "@mantine/core";
-import React from "react";
+import { Navbar, ScrollArea } from "@mantine/core";
 import NavbarIcons from "./NavbarIcons";
 import { NavbarLinks } from "./NavbarLinks";
 
-const NavbarContent = () => {
+interface NavbarContentProps {
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const NavbarContent = ({ setOpened }: NavbarContentProps) => {
   return (
     <>
       <Navbar height={600} withBorder={false}>
         <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
-          <NavbarLinks />
+          <NavbarLinks setOpened={setOpened} />
         </Navbar.Section>
         <Navbar.Section>
-          <NavbarIcons />
+          <NavbarIcons setOpened={setOpened} />
           {/* Todo: Logout */}
         </Navbar.Section>
       </Navbar>

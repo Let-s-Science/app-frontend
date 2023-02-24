@@ -8,9 +8,10 @@ interface MainLinkProps {
   color: string;
   label: string;
   toLink: string;
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MainLink = ({ icon, color, label, toLink }: MainLinkProps) => {
+const MainLink = ({ icon, color, label, toLink, setOpened }: MainLinkProps) => {
   return (
     <UnstyledButton
       component={Link}
@@ -30,6 +31,7 @@ const MainLink = ({ icon, color, label, toLink }: MainLinkProps) => {
               : theme.colors.gray[0],
         },
       })}
+      onClick={() => setOpened(false)}
     >
       <Group>
         <ThemeIcon color={color} variant="light">
@@ -69,7 +71,13 @@ const data = [
   },
 ];
 
-export const NavbarLinks = () => {
-  const links = data.map((link) => <MainLink {...link} key={link.label} />);
+interface NavbarLinksProps {
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const NavbarLinks = ({ setOpened }: NavbarLinksProps) => {
+  const links = data.map((link) => (
+    <MainLink setOpened={setOpened} {...link} key={link.label} />
+  ));
   return <div>{links}</div>;
 };

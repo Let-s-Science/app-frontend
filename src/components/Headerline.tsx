@@ -63,7 +63,7 @@ const HeaderSearch = () => {
         size="md"
         zIndex="1002"
       >
-        <NavbarContent />
+        <NavbarContent setOpened={setOpened} />
       </Drawer>
       <Header height={56} className={classes.header} id="header">
         <div className={classes.inner}>
