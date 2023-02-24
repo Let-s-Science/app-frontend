@@ -1,19 +1,5 @@
-import React, { useState } from 'react'
-import { useClient } from '../hooks/useClient'
+const Quiz = () => {
+  return <div>Quiz</div>;
+};
 
-function Quiz() {
-    
-    let client = useClient();
-
-    const getQuiz = () => {
-        client.quiz.getQuiz
-    }
-
-    console.log(getQuiz())
-  return (
-    <div>Quiz</div>
-    
-  )
-}
-
-export default Quiz
+export default Quiz;

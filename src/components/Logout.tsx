@@ -1,3 +1,5 @@
+import { Navigate } from "react-router";
+
 const Logout = () => {
   try {
     localStorage.removeItem("token");

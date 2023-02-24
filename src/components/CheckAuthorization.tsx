@@ -5,8 +5,6 @@ import { useSearchParams } from "react-router-dom";
 const CheckAuthorization = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(localStorage.getItem("token"));
-    console.log(window.location.pathname);
     if (window.location.pathname !== "/sign-up") {
       if (
         localStorage.getItem("token") === null &&
