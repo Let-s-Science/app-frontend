@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Navigate } from "react-router";
 import { useClient } from "../hooks/useClient";
 
 function Logout() {
@@ -7,7 +8,7 @@ function Logout() {
   } catch (error) {
     console.log(error);
   }
-  return <></>;
+  return <Navigate to="/login"></Navigate>;
 }
 
 export default Logout;
