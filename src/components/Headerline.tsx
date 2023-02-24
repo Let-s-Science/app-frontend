@@ -21,9 +21,7 @@ const useStyles = createStyles((theme) => ({
 
   inner: {
     height: 56,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    padding: 8,
   },
 
   links: {
@@ -73,12 +71,13 @@ function HeaderSearch() {
         title="Menu"
         padding="xl"
         size="md"
+        zIndex="1002"
       >
         <NavbarContent />
       </Drawer>
-      <Header height={56} className={classes.header} id="header" mb={120}>
+      <Header height={56} className={classes.header} id="header">
         <div className={classes.inner}>
-          <Group>
+          <Group position="apart">
             <ActionIcon
               size="lg"
               radius="xs"
@@ -92,12 +91,7 @@ function HeaderSearch() {
               onClick={toggle}
               size="sm"
             /> */}
-          </Group>
-
-          <Group>
-            
             <img className="logo" src={"/images/smallLogo.png"} alt="Logo" />
-            
           </Group>
         </div>
       </Header>

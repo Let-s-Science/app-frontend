@@ -6,10 +6,17 @@ import {
   Navigate,
   Link,
 } from "react-router-dom";
-import { Container, Drawer, MantineProvider } from "@mantine/core";
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  Container,
+  Drawer,
+  MantineProvider,
+} from "@mantine/core";
 import { Stack, Button } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import "./main.scss";
+import { useColorScheme } from "@mantine/hooks";
 
 //Routes
 import Login from "./routes/login";
@@ -28,23 +35,35 @@ import CheckAuthorization from "./components/CheckAuthorization";
 import Logout from "./components/Logout";
 
 function App() {
+  // const colorScheme = useColorScheme();
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
   return (
     <React.Fragment>
-      <MantineProvider withNormalizeCSS withGlobalStyles>
-        <NotificationsProvider position="top-right">
-          <Router>
-            <HeaderSearch />
-            <Stack
-              className="stack"
-              align="stretch"
-              sx={(theme) => ({
-                backgroundColor:
-                  theme.colorScheme === "dark"
-                    ? theme.colors.dark[8]
-                    : theme.colors.gray[0],
-                // height: "100%",
-              })}
-            > 
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          withNormalizeCSS
+          withGlobalStyles
+          theme={{ colorScheme: colorScheme }}
+        >
+          <NotificationsProvider position="top-right">
+            <Router>
+              <HeaderSearch />
+              <Stack
+                className="stack"
+                align="stretch"
+                sx={(theme) => ({
+                  backgroundColor:
+                    theme.colorScheme === "dark"
+                      ? theme.colors.dark[8]
+                      : theme.colors.gray[0],
+                  // height: "100%",
+                })}
+              >
                 <Routes>
                   {/* general-pages */}
                   <Route path="/" element={<Start />} />
@@ -61,12 +80,13 @@ function App() {
                   <Route path="*" element={<Navigate to="/404" replace />} />
                   <Route path="/logout" element={<Logout />} />
                 </Routes>
-            </Stack>
-            <Footer />
-            <CheckAuthorization />
-          </Router>
-        </NotificationsProvider>
-      </MantineProvider>
+              </Stack>
+              <Footer />
+              <CheckAuthorization />
+            </Router>
+          </NotificationsProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </React.Fragment>
   );
 }
