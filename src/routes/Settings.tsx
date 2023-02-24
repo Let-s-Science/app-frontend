@@ -1,9 +1,11 @@
 import {
+  ColorScheme,
   Group,
   Switch,
   useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core";
+import { useLocalStorage } from "@mantine/hooks";
 import { IconMoonStars, IconSun } from "@tabler/icons";
 import React from "react";
 

@@ -16,7 +16,7 @@ import {
 import { Stack, Button } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import "./main.scss";
-import { useColorScheme } from "@mantine/hooks";
+import { useColorScheme, useLocalStorage } from "@mantine/hooks";
 
 //Routes
 import Login from "./routes/login";
@@ -35,10 +35,14 @@ import CheckAuthorization from "./components/CheckAuthorization";
 import Logout from "./components/Logout";
 
 function App() {
-  // const colorScheme = useColorScheme();
-  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: "mantine-color-scheme",
+    defaultValue: "light",
+    getInitialValueInEffect: true,
+  });
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
   return (
     <React.Fragment>
       <ColorSchemeProvider
