@@ -7,6 +7,7 @@ import {
 import {
   ColorScheme,
   ColorSchemeProvider,
+  Container,
   MantineProvider,
 } from "@mantine/core";
 import { Stack } from "@mantine/core";
@@ -55,7 +56,6 @@ const App = () => {
         >
           <NotificationsProvider position="top-right">
             <Router>
-              <HeaderSearch />
               <Stack
                 className="stack"
                 align="stretch"
@@ -66,23 +66,26 @@ const App = () => {
                       : theme.colors.gray[0],
                 })}
               >
-                <Routes>
-                  {/* general-pages */}
-                  <Route path="/" element={<Start />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/settings" element={<Settings />} />
-                  <Route path="/challenges" element={<Challenges />} />
-                  <Route path="/challenge/:id" element={<Challenge />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/contact-us" element={<ContactUs />} />
-                  <Route path="/sign-up" element={<Signup />} />
+                <HeaderSearch />
+                <Container fluid>
+                  <Routes>
+                    {/* general-pages */}
+                    <Route path="/" element={<Start />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/settings" element={<Settings />} />
+                    <Route path="/challenges" element={<Challenges />} />
+                    <Route path="/challenge/:id" element={<Challenge />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/contact-us" element={<ContactUs />} />
+                    <Route path="/sign-up" element={<Signup />} />
 
-                  {/* Other */}
-                  <Route path="/404" element={<PageNotFound />} />
-                  <Route path="/privacypolicy" element={<Privacy />} />
-                  <Route path="*" element={<Navigate to="/404" replace />} />
-                  <Route path="/logout" element={<Logout />} />
-                </Routes>
+                    {/* Other */}
+                    <Route path="/404" element={<PageNotFound />} />
+                    <Route path="/privacypolicy" element={<Privacy />} />
+                    <Route path="*" element={<Navigate to="/404" replace />} />
+                    <Route path="/logout" element={<Logout />} />
+                  </Routes>
+                </Container>
               </Stack>
               <Footer />
               <CheckAuthorization />

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { StatsRing } from "../components/StatsRing";
 import { useClient } from "../hooks/useClient";
 import { berechneFortschritt, berechneLevel } from "../util";
-import { Card, Title } from "@mantine/core";
+import { Card, Stack, Title } from "@mantine/core";
 
 const Start = () => {
   const client = useClient();
@@ -28,8 +28,9 @@ const Start = () => {
   if (user === null) {
     return <p>Couldn't load data</p>;
   }
+
   return (
-    <>
+    <Stack>
       <h1>Welcome back, {user.name}</h1>
       <Card shadow="sm" p="lg" radius="md" withBorder>
         <Card.Section>
@@ -52,7 +53,7 @@ const Start = () => {
       <h2>Your Challenges</h2>
       <h2>Your Quiz</h2>
       <h2>Contact us!</h2>
-    </>
+    </Stack>
   );
 };
 

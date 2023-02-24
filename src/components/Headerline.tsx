@@ -1,4 +1,11 @@
-import { createStyles, Header, Group, Drawer, ActionIcon } from "@mantine/core";
+import {
+  createStyles,
+  Header,
+  Group,
+  Drawer,
+  ActionIcon,
+  Center,
+} from "@mantine/core";
 import { IconMenu2 } from "@tabler/icons";
 import { useState } from "react";
 import Logo from "./Logo";
@@ -67,7 +74,7 @@ const HeaderSearch = () => {
       </Drawer>
       <Header height={56} className={classes.header} id="header">
         <div className={classes.inner}>
-          <Group position="apart">
+          <Group style={{ width: "100%" }} position="apart">
             <ActionIcon
               size="lg"
               radius="xs"
