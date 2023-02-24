@@ -1,4 +1,4 @@
-import { ActionIcon, Paper } from "@mantine/core";
+import { ActionIcon, Center, Group, Paper } from "@mantine/core";
 import { IconHome, IconTargetArrow, IconUser } from "@tabler/icons";
 import { Link } from "react-router-dom";
 
@@ -8,16 +8,24 @@ function Footer() {
       <ActionIcon component={Link} to="/" size="lg" radius="xl">
         <IconHome size={26} />
       </ActionIcon>
-      <Link to="/challenges">
-        <ActionIcon size="lg" radius="xl" variant="transparent">
-          <IconTargetArrow size={26} />
-        </ActionIcon>
-      </Link>
-      <Link to="/profile">
-        <ActionIcon size="lg" radius="xl" variant="transparent">
-          <IconUser size={26} />
-        </ActionIcon>
-      </Link>
+      <ActionIcon
+        component={Link}
+        to="/challenges"
+        size="lg"
+        radius="xl"
+        variant="transparent"
+      >
+        <IconTargetArrow size={26} />
+      </ActionIcon>
+      <ActionIcon
+        component={Link}
+        to="/profile"
+        size="lg"
+        radius="xl"
+        variant="transparent"
+      >
+        <IconUser size={26} />
+      </ActionIcon>
     </Paper>
   );
 }
