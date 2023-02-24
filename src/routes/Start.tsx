@@ -31,12 +31,14 @@ const Start = () => {
 
   return (
     <Stack>
-      <h1>Welcome back, {user.name}</h1>
+      <Title order={1}>Welcome back, {user.name}</Title>
       <Card shadow="sm" p="lg" radius="md" withBorder>
         <Card.Section>
           <br />
           <Title>{user.score}</Title>
-          <h3 style={{ textAlign: "center" }}>Your current Score!</h3>
+          <Title order={3} style={{ textAlign: "center" }}>
+            Your current Score!
+          </Title>
         </Card.Section>
       </Card>
       <StatsRing
@@ -50,9 +52,9 @@ const Start = () => {
           },
         ]}
       />
-      <h2>Your Challenges</h2>
-      <h2>Your Quiz</h2>
-      <h2>Contact us!</h2>
+      <Title order={2}>Your Challenges</Title>
+      <Title order={2}>Your Quiz</Title>
+      <Title order={2}>Contact us!</Title>
     </Stack>
   );
 };

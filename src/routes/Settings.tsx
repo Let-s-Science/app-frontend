@@ -1,6 +1,7 @@
 import {
   Group,
   Switch,
+  Title,
   useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core";
@@ -11,7 +12,7 @@ const Settings = () => {
   const theme = useMantineTheme();
   return (
     <>
-      <h1>Settings</h1>
+      <Title order={1}>Settings</Title>
       <Group position="center" my={30}>
         <Switch
           checked={colorScheme === "dark"}

@@ -41,7 +41,7 @@ const Profile = () => {
       <Center>
         <Jazzicon diameter={90} seed={parseInt(user.avatar_seed)} />
       </Center>
-      <h1>{user.name}'s Site</h1>
+      <Title order={1}>{user.name}'s Site</Title>
       <div className="informationTitle">
         E-Mail:
         <ActionIcon onClick={editEmail}>
@@ -57,7 +57,9 @@ const Profile = () => {
         <Card.Section>
           <br />
           <Title>{user.score}</Title>
-          <h3 style={{ textAlign: "center" }}>Your current Score!</h3>
+          <Title order={3} style={{ textAlign: "center" }}>
+            Your current Score!
+          </Title>
         </Card.Section>
       </Card>
       <div className="profileLevel">

@@ -1,10 +1,11 @@
+import { Title } from "@mantine/core";
 import React from "react";
 
 const Privacy = () => {
   return (
     <>
       <div className="mantine-TypographyStylesProvider-root mantine-99m9wm">
-        <h1>Privacy</h1>
+        <Title order={1}>Privacy</Title>
         <p>
           At Erasmus+ Website, accessible from https://msostream.live, one of
           our main priorities is the privacy of our visitors. This Privacy
@@ -13,7 +14,7 @@ const Privacy = () => {
           questions or require more information about our Privacy Policy, do not
           hesitate to contact us.
         </p>
-        <h2>Log Files</h2>
+        <Title order={2}>Log Files</Title>
         <p>
           Erasmus+ Website follows a standard procedure of using log files.
           These files log visitors when they visit websites. All hosting
@@ -26,7 +27,7 @@ const Privacy = () => {
           administering the site, tracking users' movement on the website, and
           gathering demographic information.
         </p>
-        <h2>Privacy Policies</h2>
+        <Title order={2}>Privacy Policies</Title>
         <p>
           You may consult this list to find the Privacy Policy for each of the
           advertising partners of Erasmus+ Website.Third-party ad servers or ad
@@ -40,7 +41,7 @@ const Privacy = () => {
           has no access to or control over these cookies that are used by
           third-party advertisers.
         </p>
-        <h2>Third Party Privacy Policies</h2>
+        <Title order={2}>Third Party Privacy Policies</Title>
         <p>
           Erasmus+ Website's Privacy Policy does not apply to other advertisers
           or websites. Thus, we are advising you to consult the respective
@@ -51,7 +52,7 @@ const Privacy = () => {
           information about cookie management with specific web browsers, it can
           be found at the browsers' respective websites.
         </p>
-        <h2>Children's Information</h2>
+        <Title order={2}>Children's Information</Title>
         <p>
           Another part of our priority is adding protection for children while
           using the internet. We encourage parents and guardians to observe,
@@ -62,7 +63,7 @@ const Privacy = () => {
           encourage you to contact us immediately and we will do our best
           efforts to promptly remove such information from our records.
         </p>
-        <h2>Online Privacy Policy Only</h2>
+        <Title order={2}>Online Privacy Policy Only</Title>
         <p>
           This Privacy Policy applies only to our online activities and is valid
           for visitors to our website with regards to the information that they
@@ -70,7 +71,7 @@ const Privacy = () => {
           applicable to any information collected offline or via channels other
           than this website.
         </p>
-        <h2>Consent</h2>
+        <Title order={2}>Consent</Title>
         <p>
           By using our website, you hereby consent to our Privacy Policy and
           agree to its Terms and Conditions.
@@ -98,7 +99,7 @@ const Privacy = () => {
         require more information about our Privacy Policy, do not hesitate to
         contact us.
       </p>
-      <h2>Log Files</h2>
+      <Title order={2}>Log Files</Title>
       <p>
         Erasmus+ Website follows a standard procedure of using log files. These
         files log visitors when they visit websites. All hosting companies do
@@ -132,7 +133,7 @@ const Privacy = () => {
         tracking users' movement on the website, and gathering demographic
         information.
       </p>
-      <h2>Privacy Policies</h2>
+      <Title order={2}>Privacy Policies</Title>
       <p>
         You may consult this list to find the Privacy Policy for each of the
         advertising partners of Erasmus+ Website.Third-party ad servers or ad
@@ -167,7 +168,7 @@ const Privacy = () => {
         websites that you visit. Note that Erasmus+ Website has no access to or
         control over these cookies that are used by third-party advertisers.
       </p>
-      <h2>Third Party Privacy Policies</h2>
+      <Title order={2}>Third Party Privacy Policies</Title>
       <p>
         Erasmus+ Website's Privacy Policy does not apply to other advertisers or
         websites. Thus, we are advising you to consult the respective Privacy
@@ -196,7 +197,7 @@ const Privacy = () => {
         cookie management with specific web browsers, it can be found at the
         browsers' respective websites.
       </p>
-      <h2>Children's Information</h2>
+      <Title order={2}>Children's Information</Title>
       <p>
         Another part of our priority is adding protection for children while
         using the internet. We encourage parents and guardians to observe,
@@ -207,7 +208,7 @@ const Privacy = () => {
         contact us immediately and we will do our best efforts to promptly
         remove such information from our records.
       </p>
-      <h2>Online Privacy Policy Only</h2>
+      <Title order={2}>Online Privacy Policy Only</Title>
       <p>
         This Privacy Policy applies only to our online activities and is valid
         for visitors to our website with regards to the information that they
@@ -215,7 +216,7 @@ const Privacy = () => {
         to any information collected offline or via channels other than this
         website.
       </p>
-      <h2>Consent</h2>
+      <Title order={2}>Consent</Title>
       <p>
         By using our website, you hereby consent to our Privacy Policy and agree
         to its Terms and Conditions.
@@ -229,7 +230,7 @@ const Privacy = () => {
           questions or require more information about our Privacy Policy, do not
           hesitate to contact us.
         </p>
-        <h2>Log Files</h2>
+        <Title order={2}>Log Files</Title>
         <p>
           Erasmus+ Website follows a standard procedure of using log files.
           These files log visitors when they visit websites. All hosting
@@ -242,7 +243,7 @@ const Privacy = () => {
           administering the site, tracking users' movement on the website, and
           gathering demographic information.
         </p>
-        <h2>Privacy Policies</h2>
+        <Title order={2}>Privacy Policies</Title>
         <p>
           You may consult this list to find the Privacy Policy for each of the
           advertising partners of Erasmus+ Website.Third-party ad servers or ad
@@ -256,7 +257,7 @@ const Privacy = () => {
           has no access to or control over these cookies that are used by
           third-party advertisers.
         </p>
-        <h2>Third Party Privacy Policies</h2>
+        <Title order={2}>Third Party Privacy Policies</Title>
         <p>
           Erasmus+ Website's Privacy Policy does not apply to other advertisers
           or websites. Thus, we are advising you to consult the respective
@@ -267,7 +268,7 @@ const Privacy = () => {
           information about cookie management with specific web browsers, it can
           be found at the browsers' respective websites.
         </p>
-        <h2>Children's Information</h2>
+        <Title order={2}>Children's Information</Title>
         <p>
           Another part of our priority is adding protection for children while
           using the internet. We encourage parents and guardians to observe,
@@ -278,7 +279,7 @@ const Privacy = () => {
           encourage you to contact us immediately and we will do our best
           efforts to promptly remove such information from our records.
         </p>
-        <h2>Online Privacy Policy Only</h2>
+        <Title order={2}>Online Privacy Policy Only</Title>
         <p>
           This Privacy Policy applies only to our online activities and is valid
           for visitors to our website with regards to the information that they
@@ -286,16 +287,19 @@ const Privacy = () => {
           applicable to any information collected offline or via channels other
           than this website.
         </p>
-        <h2>Consent</h2>
+        <Title order={2}>Consent</Title>
         <p>
           By using our website, you hereby consent to our Privacy Policy and
           agree to its Terms and Conditions.
         </p>
       </div>
       <div className="mantine-Container-root mantine-15pjuqq">
-        <h1 className="mantine-Text-root mantine-Title-root mantine-dyfpg1">
+        <Title
+          order={1}
+          className="mantine-Text-root mantine-Title-root mantine-dyfpg1"
+        >
           Privacy Policy
-        </h1>
+        </Title>
         <div className="mantine-TypographyStylesProvider-root mantine-99m9wm">
           <p>
             At Erasmus+ Website, accessible from https://msostream.live, one of
@@ -305,7 +309,7 @@ const Privacy = () => {
             additional questions or require more information about our Privacy
             Policy, do not hesitate to contact us.
           </p>
-          <h2>Log Files</h2>
+          <Title order={2}>Log Files</Title>
           <p>
             Erasmus+ Website follows a standard procedure of using log files.
             These files log visitors when they visit websites. All hosting
@@ -318,7 +322,7 @@ const Privacy = () => {
             trends, administering the site, tracking users' movement on the
             website, and gathering demographic information.
           </p>
-          <h2>Privacy Policies</h2>
+          <Title order={2}>Privacy Policies</Title>
           <p>
             You may consult this list to find the Privacy Policy for each of the
             advertising partners of Erasmus+ Website.Third-party ad servers or
@@ -332,7 +336,7 @@ const Privacy = () => {
             Website has no access to or control over these cookies that are used
             by third-party advertisers.
           </p>
-          <h2>Third Party Privacy Policies</h2>
+          <Title order={2}>Third Party Privacy Policies</Title>
           <p>
             Erasmus+ Website's Privacy Policy does not apply to other
             advertisers or websites. Thus, we are advising you to consult the
@@ -343,7 +347,7 @@ const Privacy = () => {
             more detailed information about cookie management with specific web
             browsers, it can be found at the browsers' respective websites.
           </p>
-          <h2>Children's Information</h2>
+          <Title order={2}>Children's Information</Title>
           <p>
             Another part of our priority is adding protection for children while
             using the internet. We encourage parents and guardians to observe,
@@ -355,7 +359,7 @@ const Privacy = () => {
             will do our best efforts to promptly remove such information from
             our records.
           </p>
-          <h2>Online Privacy Policy Only</h2>
+          <Title order={2}>Online Privacy Policy Only</Title>
           <p>
             This Privacy Policy applies only to our online activities and is
             valid for visitors to our website with regards to the information
@@ -363,7 +367,7 @@ const Privacy = () => {
             not applicable to any information collected offline or via channels
             other than this website.
           </p>
-          <h2>Consent</h2>
+          <Title order={2}>Consent</Title>
           <p>
             By using our website, you hereby consent to our Privacy Policy and
             agree to its Terms and Conditions.

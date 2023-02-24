@@ -1,3 +1,4 @@
+import { Title } from "@mantine/core";
 import "../main.scss";
 
 const Page404 = () => {
@@ -11,10 +12,10 @@ const Page404 = () => {
         />
       </div>
       <div>
-        <h1>Oops... Found!</h1>
-        <h2 style={{ textAlign: "center" }}>
+        <Title order={1}>Oops... Found!</Title>
+        <Title order={2} style={{ textAlign: "center" }}>
           This site doesn't seems to exist.
-        </h2>
+        </Title>
       </div>
     </div>
   );
