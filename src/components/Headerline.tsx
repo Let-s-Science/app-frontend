@@ -11,6 +11,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { IconMenu2 } from "@tabler/icons";
 import React, { useState } from "react";
+import Logo from "./Logo";
 import NavbarContent from "./NavbarContent";
 
 const useStyles = createStyles((theme) => ({
@@ -95,9 +96,7 @@ function HeaderSearch() {
           </Group>
 
           <Group>
-            
-            <img className="logo" src={"/images/smallLogo.png"} alt="Logo" />
-            
+            <Logo />
           </Group>
         </div>
       </Header>
