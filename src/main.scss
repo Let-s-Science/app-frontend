@@ -53,6 +53,7 @@ h1{
     // height: 100%;
     border-right: 0;
 }
+
 .centeredAvatar {
     margin-top: 1em;
 }
@@ -70,5 +71,19 @@ h1{
 
 .userInformation{
     margin-left: 10vw;
-    font: bolder;
+    
+}
+
+.allInformations {
+    margin: auto;
+}
+
+.profileStats {
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.profileLevel {
+    margin-left: 10vw;
+    margin-right: 10vw;
 }
