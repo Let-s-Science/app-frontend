@@ -1,3 +1,5 @@
+
+
 div{
     font-family: "Open Sans", sans-serif;
 }
@@ -7,12 +9,12 @@ h1{
 .stack{
     min-height:100vh;
 }
-// #header{
-//     position: -webkit-sticky;
-//     /* Safari */
-//     position: sticky;
-//     top: 0;
-// }
+#header{
+    position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    top: 0;
+}
 
 .logo {
     width: 4.648vh;
@@ -65,8 +67,12 @@ h1{
 
 .informationTitle {
     margin-left: 10vw;
+    margin-right: 4vw;
     color: rgb(156, 151, 151);
     font-style: italic;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .userInformation{

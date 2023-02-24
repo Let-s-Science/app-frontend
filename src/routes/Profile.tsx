@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Client, OpenAPI, User } from "@lets-science/letsscience-client";
 import { useClient } from "../hooks/useClient";
-import { Card, Center, Paper, Title } from "@mantine/core";
+import { ActionIcon, Card, Center, Paper, Title } from "@mantine/core";
 import Jazzicon from "react-jazzicon";
 import { StatsRing } from "../components/StatsRing";
 import { berechneLevel, berechneFortschritt } from "../util";
+import { IconPencil } from "@tabler/icons";
 
 function Profile() {
   const [user, setUser] = useState<User | null>(null);
@@ -26,12 +27,13 @@ function Profile() {
     return () => {};
   }, []);
 
+  const editEmail = () => {
+    //Hier muss die Backendanbindung hin
+    console.log("Test");
+  };
+
   if (user === null) {
-    return (
-      <React.Fragment>
-        Couldn't load data
-      </React.Fragment>
-    );
+    return <React.Fragment>Couldn't load data</React.Fragment>;
   }
 
   return (
@@ -40,7 +42,12 @@ function Profile() {
         <Jazzicon diameter={90} seed={parseInt(user.avatar_seed)} />
       </Center>
       <h1>{user.name}'s Site</h1>
-      <div className="informationTitle">E-Mail:</div>
+      <div className="informationTitle">
+        E-Mail:
+        <ActionIcon onClick={editEmail}>
+          <IconPencil></IconPencil>
+        </ActionIcon>
+      </div>
       <div className="userInformation">{user.email}</div>
       <div className="informationTitle">Created At:</div>
       <div className="userInformation">{user.created_at}</div>
@@ -51,19 +58,19 @@ function Profile() {
           <h3 style={{ textAlign: "center" }}>Your current Score!</h3>
         </Card.Section>
       </Card>
-        <div className="profileLevel">
-      <StatsRing
-        data={[
-          {
-            label: "You are currently Level",
-            stats: berechneLevel(user.score),
-            progress: berechneFortschritt(user.score),
-            color: "green",
-            icon: "up",
-          },
-        ]}
+      <div className="profileLevel">
+        <StatsRing
+          data={[
+            {
+              label: "You are currently Level",
+              stats: berechneLevel(user.score),
+              progress: berechneFortschritt(user.score),
+              color: "green",
+              icon: "up",
+            },
+          ]}
         />
-        </div>
+      </div>
     </React.Fragment>
   );
 }
