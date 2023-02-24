@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Client, OpenAPI, User } from "@lets-science/letsscience-client";
 import { useClient } from "../hooks/useClient";
-import { Center, Paper } from "@mantine/core";
+import { Card, Center, Paper, Title } from "@mantine/core";
 import Jazzicon from "react-jazzicon";
+import { StatsRing } from "../components/StatsRing";
+import { berechneLevel, berechneFortschritt } from "../util";
 
 function Profile() {
   const [user, setUser] = useState<User | null>(null);
@@ -42,8 +44,26 @@ function Profile() {
       <div className="userInformation">{user.email}</div>
       <div className="informationTitle">Created At:</div>
       <div className="userInformation">{user.created_at}</div>
-      <div className="informationTitle">Score:</div>
-      <div className="userInformation">{user.score}</div>
+      <Card className="profileStats" shadow="sm" p="lg" radius="md" withBorder>
+        <Card.Section>
+          <br />
+          <Title>{user.score}</Title>
+          <h3 style={{ textAlign: "center" }}>Your current Score!</h3>
+        </Card.Section>
+      </Card>
+        <div className="profileLevel">
+      <StatsRing
+        data={[
+          {
+            label: "You are currently Level",
+            stats: berechneLevel(user.score),
+            progress: berechneFortschritt(user.score),
+            color: "green",
+            icon: "up",
+          },
+        ]}
+        />
+        </div>
     </React.Fragment>
   );
 }
