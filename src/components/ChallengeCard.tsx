@@ -14,7 +14,7 @@ const ChallengeCard = ({ challenge, colorMap }: ChallengeCardProps) => {
         <Logo />
         <Badge color={colorMap[challenge.category]}>{challenge.category}</Badge>
       </Group>
-      <Text size="lg" weight={500}>
+      <Text size="lg" weight={500} mt="md">
         {challenge.title}
       </Text>
       <Text size="sm" color="dimmed" mt={5}>

@@ -23,7 +23,7 @@ const icons = {
   down: IconArrowDownRight,
 };
 
-export function StatsRing({ data }: StatsRingProps) {
+export const StatsRing = ({ data }: StatsRingProps) => {
   const stats = data.map((stat) => {
     const Icon = icons[stat.icon];
     return (
@@ -53,9 +53,5 @@ export function StatsRing({ data }: StatsRingProps) {
       </Paper>
     );
   });
-  return (
-    <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
-      {stats}
-    </SimpleGrid>
-  );
-}
+  return <>{stats}</>;
+};

@@ -2,15 +2,12 @@ import {
   createStyles,
   Header,
   Group,
-  Burger,
   Drawer,
-  Button,
   ActionIcon,
-  Navbar,
+  Center,
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
 import { IconMenu2 } from "@tabler/icons";
-import React, { useState } from "react";
+import { useState } from "react";
 import Logo from "./Logo";
 import NavbarContent from "./NavbarContent";
 
@@ -59,13 +56,12 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function HeaderSearch() {
-  // const [opened, { toggle }] = useDisclosure(false);
+const HeaderSearch = () => {
   const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
 
   return (
-    <React.Fragment>
+    <>
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
@@ -74,11 +70,11 @@ function HeaderSearch() {
         size="md"
         zIndex="1002"
       >
-        <NavbarContent />
+        <NavbarContent setOpened={setOpened} />
       </Drawer>
       <Header height={56} className={classes.header} id="header">
         <div className={classes.inner}>
-          <Group position="apart">
+          <Group style={{ width: "100%" }} position="apart">
             <ActionIcon
               size="lg"
               radius="xs"
@@ -87,16 +83,11 @@ function HeaderSearch() {
             >
               <IconMenu2 size={26} />
             </ActionIcon>
-            {/* <Burger
-              opened={setOpened(true ? false : true)}
-              onClick={toggle}
-              size="sm"
-            /> */}
             <Logo />
           </Group>
         </div>
       </Header>
-    </React.Fragment>
+    </>
   );
-}
+};
 export default HeaderSearch;

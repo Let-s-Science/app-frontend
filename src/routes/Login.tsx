@@ -1,4 +1,3 @@
-import { Client, OpenAPI } from "@lets-science/letsscience-client";
 import {
   TextInput,
   PasswordInput,
@@ -11,21 +10,19 @@ import {
   Group,
   Button,
 } from "@mantine/core";
-import { lowerFirst } from "@mantine/hooks";
-import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Navigate } from "react-router";
 import { showNotification } from "@mantine/notifications";
 import { IconAlertCircle } from "@tabler/icons";
 import { useClient } from "../hooks/useClient";
+import { Link } from "react-router-dom";
 
-function Signup() {
-  const [user, setUser] = useState("");
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isregistered, setIsRegistered] = useState(false);
 
-  let client = useClient();
+  const client = useClient();
 
   const onLogin = () => {
     const login = async () => {
@@ -36,10 +33,10 @@ function Signup() {
         })
         .then((resp) => {
           localStorage.setItem("token", resp);
-          setUser(resp);
           setIsRegistered(true);
         })
         .catch((e) => {
+          console.log(e);
           showNotification({
             title: "There is something wrong!",
             message: "Please check your data and try again later!",
@@ -49,30 +46,17 @@ function Signup() {
             radius: "md",
             disallowClose: true,
           });
-          console.log(e);
         });
     };
     login();
   };
 
-  //   useEffect(() => {
-  //     const login = async () => {
-  //       let result = await client.user.postApiRegister({
-  //         email: "",
-  //         password: "",
-  //         name: "",
-  //         avatar_seed: "",
-  //         is_guest: false,
-  //       });
-  //       setUser(result);
-  //     };
-  //     login();
-  //   }, []);
   if (isregistered) {
     return <Navigate to="/" />;
   }
+
   return (
-    <React.Fragment>
+    <>
       <Container size={420} my={40}>
         <Title
           align="center"
@@ -84,10 +68,7 @@ function Signup() {
           Welcome back!
         </Title>
         <Text color="dimmed" size="sm" align="center" mt={5}>
-          Do not have an account yet?{" "}
-          <Anchor<"a"> href="/sign-up" size="sm">
-            Sign up
-          </Anchor>
+          Do not have an account yet? <Link to="/sign-up">Sign up</Link>
         </Text>
 
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
@@ -123,8 +104,8 @@ function Signup() {
           </Button>
         </Paper>
       </Container>
-    </React.Fragment>
+    </>
   );
-}
+};
 
 export default Signup;

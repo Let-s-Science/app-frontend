@@ -1,24 +1,18 @@
 import {
-  ActionIcon,
-  Button,
-  Center,
-  ColorScheme,
   Group,
   Switch,
+  Title,
   useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core";
-import { useLocalStorage } from "@mantine/hooks";
-import { IconLogout, IconMoonStars, IconSun } from "@tabler/icons";
-import React from "react";
-import { Link } from "react-router-dom";
+import { IconMoonStars, IconSun } from "@tabler/icons";
 
-function Settings() {
+const Settings = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
   return (
-    <React.Fragment>
-      <h1>Settings</h1>
+    <>
+      <Title order={1}>Settings</Title>
       <Group position="center" my={30}>
         <Switch
           checked={colorScheme === "dark"}
@@ -34,8 +28,7 @@ function Settings() {
           }
         />
       </Group>
-
-     <Center>
+           <Center>
       <Link to="/logout">
       <Button>
         <IconLogout></IconLogout>
@@ -43,9 +36,8 @@ function Settings() {
       </Button>
       </Link>
      </Center>
-    </React.Fragment>
+    </>
   );
-  return <></>;
-}
+};
 
 export default Settings;

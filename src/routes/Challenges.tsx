@@ -12,7 +12,7 @@ const getCategories = (challenges: Challenge[]) => {
   return l;
 };
 
-function Challenges() {
+const Challenges = () => {
   const client = useClient();
 
   const [value, valueHandlers] = useListState<string>([]);
@@ -72,6 +72,6 @@ function Challenges() {
       ))}
     </Accordion>
   );
-}
+};
 
 export default Challenges;

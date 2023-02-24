@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  IconGitPullRequest,
-  IconAlertCircle,
-  IconMessages,
-  IconDatabase,
-  IconSettings,
-  IconShield,
-  IconHeadset,
-  IconLink,
-} from "@tabler/icons";
+import { IconSettings, IconShield, IconHeadset, IconLink } from "@tabler/icons";
 import { ThemeIcon, UnstyledButton, Group, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
 
@@ -17,9 +8,10 @@ interface MainLinkProps {
   color: string;
   label: string;
   toLink: string;
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function MainLink({ icon, color, label, toLink }: MainLinkProps) {
+const MainLink = ({ icon, color, label, toLink, setOpened }: MainLinkProps) => {
   return (
     <UnstyledButton
       component={Link}
@@ -39,6 +31,7 @@ function MainLink({ icon, color, label, toLink }: MainLinkProps) {
               : theme.colors.gray[0],
         },
       })}
+      onClick={() => setOpened(false)}
     >
       <Group>
         <ThemeIcon color={color} variant="light">
@@ -49,7 +42,7 @@ function MainLink({ icon, color, label, toLink }: MainLinkProps) {
       </Group>
     </UnstyledButton>
   );
-}
+};
 
 const data = [
   {
@@ -78,7 +71,13 @@ const data = [
   },
 ];
 
-export function NavbarLinks() {
-  const links = data.map((link) => <MainLink {...link} key={link.label} />);
-  return <div>{links}</div>;
+interface NavbarLinksProps {
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export const NavbarLinks = ({ setOpened }: NavbarLinksProps) => {
+  const links = data.map((link) => (
+    <MainLink setOpened={setOpened} {...link} key={link.label} />
+  ));
+  return <div>{links}</div>;
+};

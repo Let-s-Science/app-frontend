@@ -1,4 +1,3 @@
-import { Client } from "@lets-science/letsscience-client";
 import {
   TextInput,
   PasswordInput,
@@ -12,24 +11,22 @@ import {
   Button,
   Center,
 } from "@mantine/core";
-import { lowerFirst } from "@mantine/hooks";
-import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Navigate } from "react-router";
 import Jazzicon from "react-jazzicon";
 import { useClient } from "../hooks/useClient";
 import { showNotification } from "@mantine/notifications";
 import { IconAlertCircle, IconCircleCheck } from "@tabler/icons";
+import { Link } from "react-router-dom";
 
-function Signup() {
-  const [user, setUser] = useState("");
+const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatar_seed, setAvatar_Seed] = useState("");
   const [isregistered, setIsRegistered] = useState(false);
 
-  let client = useClient();
+  const client = useClient();
 
   const onSignUp = () => {
     const signup = async () => {
@@ -41,8 +38,7 @@ function Signup() {
           avatar_seed: avatar_seed,
           is_guest: false,
         })
-        .then((resp) => {
-          setUser(resp);
+        .then(() => {
           showNotification({
             title: "Yeah! Welcome on board!",
             message: "Please check your Mails and verify your Email-Address",
@@ -54,6 +50,7 @@ function Signup() {
           setIsRegistered(true);
         })
         .catch((e) => {
+          console.log(e);
           showNotification({
             title: "There is something wrong!",
             message: "Please check your data and try again later!",
@@ -63,7 +60,6 @@ function Signup() {
             radius: "md",
             disallowClose: true,
           });
-          console.log(e);
         });
     };
     signup();
@@ -83,10 +79,7 @@ function Signup() {
         Welcome!
       </Title>
       <Text color="dimmed" size="sm" align="center" mt={5}>
-        Do you have an account yet?{" "}
-        <Anchor<"a"> href="/login" size="sm">
-          Log in
-        </Anchor>
+        Do you have an account yet? <Link to="/login">Log in</Link>
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
@@ -123,7 +116,7 @@ function Signup() {
           <Button
             className="avatarButton"
             onClick={() => {
-              let result = Math.floor(Math.random() * 10000);
+              const result = Math.floor(Math.random() * 10000);
               setAvatar_Seed(result + "");
             }}
           >
@@ -147,6 +140,6 @@ function Signup() {
       </Paper>
     </Container>
   );
-}
+};
 
 export default Signup;

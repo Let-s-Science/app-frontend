@@ -1,30 +1,25 @@
-import { Box, Group, ActionIcon, Navbar, ScrollArea } from "@mantine/core";
-import { IconSun, IconMoonStars } from "@tabler/icons";
-import React from "react";
+import { Navbar, ScrollArea } from "@mantine/core";
 import NavbarIcons from "./NavbarIcons";
 import { NavbarLinks } from "./NavbarLinks";
 
-function NavbarContent() {
+interface NavbarContentProps {
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const NavbarContent = ({ setOpened }: NavbarContentProps) => {
   return (
-    <React.Fragment>
-      <Navbar height={600} p="xs" width={{ base: 300 }}>
-        {/* <Navbar.Section mt="xs">
-            <Brand />
-          </Navbar.Section> */}
+    <>
+      <Navbar height={600} withBorder={false}>
         <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
-          <Box py="md">
-            <NavbarLinks />
-          </Box>
+          <NavbarLinks setOpened={setOpened} />
         </Navbar.Section>
         <Navbar.Section>
-          <Box py="md" className="socialLinks">
-            <NavbarIcons />
-          </Box>
+          <NavbarIcons setOpened={setOpened} />
           {/* Todo: Logout */}
         </Navbar.Section>
       </Navbar>
-    </React.Fragment>
+    </>
   );
-}
+};
 
 export default NavbarContent;

@@ -4,25 +4,34 @@ import {
   IconBrandInstagram,
   IconBrandTiktok,
 } from "@tabler/icons";
-import React from "react";
 
-function NavbarIcons() {
+interface NavbarIconsProps {
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const NavbarIcons = ({ setOpened }: NavbarIconsProps) => {
+  const closeDrawer = () => setOpened(false);
   return (
-    <React.Fragment>
-      <ActionIcon component="a" href="/">
+    <>
+      <ActionIcon component="a" href="/" onClick={closeDrawer}>
         <IconBrandFacebook />
       </ActionIcon>
       <ActionIcon
         component="a"
         href="https://www.instagram.com/letsscience.eu/"
+        onClick={closeDrawer}
       >
         <IconBrandInstagram />
       </ActionIcon>
-      <ActionIcon component="a" href="https://www.tiktok.com/@letsscience.eu">
+      <ActionIcon
+        component="a"
+        href="https://www.tiktok.com/@letsscience.eu"
+        onClick={closeDrawer}
+      >
         <IconBrandTiktok />
       </ActionIcon>
-    </React.Fragment>
+    </>
   );
-}
+};
 
 export default NavbarIcons;

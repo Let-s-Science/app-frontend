@@ -10,7 +10,7 @@ import {
 import { useForm } from "@mantine/form";
 import emailjs from "@emailjs/browser";
 
-function ContactUs() {
+const ContactUs = () => {
   const form = useForm({
     initialValues: {
       name: "",

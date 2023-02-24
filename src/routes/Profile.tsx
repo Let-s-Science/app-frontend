@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "@lets-science/letsscience-client";
 import { useClient } from "../hooks/useClient";
-import { ActionIcon, Card, Center, Paper, Title } from "@mantine/core";
+import { ActionIcon, Card, Center, Paper, Stack, Title } from "@mantine/core";
 import Jazzicon from "react-jazzicon";
 import { StatsRing } from "../components/StatsRing";
 import { berechneLevel, berechneFortschritt } from "../util";
 import { IconPencil } from "@tabler/icons";
+import { formatDate } from "../utils/dateFormat";
 
-function Profile() {
+const Profile = () => {
   const [user, setUser] = useState<User | null>(null);
-  let client = useClient();
+  const client = useClient();
 
   useEffect(() => {
     const getUser = async () => {
@@ -29,33 +30,36 @@ function Profile() {
 
   const editEmail = () => {
     //Hier muss die Backendanbindung hin
-    console.log("Test");
   };
 
   if (user === null) {
-    return <React.Fragment>Couldn't load data</React.Fragment>;
+    return <>Couldn't load data</>;
   }
 
   return (
-    <React.Fragment>
-      <Center className="centeredAvatar">
+    <Stack>
+      <Center>
         <Jazzicon diameter={90} seed={parseInt(user.avatar_seed)} />
       </Center>
-      <h1>{user.name}'s Site</h1>
+      <Title order={1}>{user.name}'s Site</Title>
       <div className="informationTitle">
         E-Mail:
         <ActionIcon onClick={editEmail}>
-          <IconPencil></IconPencil>
+          <IconPencil />
         </ActionIcon>
       </div>
       <div className="userInformation">{user.email}</div>
       <div className="informationTitle">Created At:</div>
-      <div className="userInformation">{user.created_at}</div>
+      <div className="userInformation">
+        {formatDate(new Date(user.created_at))}
+      </div>
       <Card className="profileStats" shadow="sm" p="lg" radius="md" withBorder>
         <Card.Section>
           <br />
           <Title>{user.score}</Title>
-          <h3 style={{ textAlign: "center" }}>Your current Score!</h3>
+          <Title order={3} style={{ textAlign: "center" }}>
+            Your current Score!
+          </Title>
         </Card.Section>
       </Card>
       <div className="profileLevel">
@@ -71,8 +75,8 @@ function Profile() {
           ]}
         />
       </div>
-    </React.Fragment>
+    </Stack>
   );
-}
+};
 
 export default Profile;
