@@ -1,11 +1,14 @@
 import {
+  Button,
+  Center,
   Group,
   Switch,
   Title,
   useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core";
-import { IconMoonStars, IconSun } from "@tabler/icons";
+import { IconLogout, IconMoonStars, IconSun } from "@tabler/icons";
+import { Link } from "react-router-dom";
 
 const Settings = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -28,14 +31,16 @@ const Settings = () => {
           }
         />
       </Group>
-           <Center>
-      <Link to="/logout">
-      <Button>
-        <IconLogout></IconLogout>
-            Logout
-      </Button>
-      </Link>
-     </Center>
+      <Center>
+        <Link to="/logout">
+          <Button>
+            <Group position="apart">
+              <IconLogout />
+              Logout
+            </Group>
+          </Button>
+        </Link>
+      </Center>
     </>
   );
 };
