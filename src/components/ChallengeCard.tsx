@@ -1,14 +1,24 @@
 import { Challenge } from "@lets-science/letsscience-client";
 import { Badge, Card, Group, Text } from "@mantine/core";
+import Logo from "./Logo";
 
-const ChallengeCard = (ch: Challenge) => {
+interface ChallengeCardProps {
+  challenge: Challenge;
+  colorMap: Record<string, string>;
+}
+
+const ChallengeCard = ({ challenge, colorMap }: ChallengeCardProps) => {
   return (
     <Card withBorder radius="md">
-      <Text size="lg" weight={500} mt="md">
-        {ch.title}
+      <Group position="apart">
+        <Logo />
+        <Badge color={colorMap[challenge.category]}>{challenge.category}</Badge>
+      </Group>
+      <Text size="lg" weight={500}>
+        {challenge.title}
       </Text>
       <Text size="sm" color="dimmed" mt={5}>
-        {ch.description}
+        {challenge.description}
       </Text>
     </Card>
   );

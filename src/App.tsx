@@ -33,6 +33,7 @@ import Privacy from "./routes/Privacy";
 import Signup from "./routes/Signup";
 import CheckAuthorization from "./components/CheckAuthorization";
 import Logout from "./components/Logout";
+import Challenge from "./routes/Challenge";
 
 function App() {
   // const colorScheme = useColorScheme();
@@ -41,52 +42,44 @@ function App() {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
   return (
     <React.Fragment>
-      <ColorSchemeProvider
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
-      >
-        <MantineProvider
-          withNormalizeCSS
-          withGlobalStyles
-          theme={{ colorScheme: colorScheme }}
-        >
-          <NotificationsProvider position="top-right">
-            <Router>
-              <HeaderSearch />
-              <Stack
-                className="stack"
-                align="stretch"
-                sx={(theme) => ({
-                  backgroundColor:
-                    theme.colorScheme === "dark"
-                      ? theme.colors.dark[8]
-                      : theme.colors.gray[0],
-                  // height: "100%",
-                })}
-              >
-                <Routes>
-                  {/* general-pages */}
-                  <Route path="/" element={<Start />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/settings" element={<Settings />} />
-                  <Route path="/challenges" element={<Challenges />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/contact-us" element={<ContactUs />} />
-                  <Route path="/sign-up" element={<Signup />} />
+      <MantineProvider withNormalizeCSS withGlobalStyles>
+        <NotificationsProvider position="top-right">
+          <Router>
+            <HeaderSearch />
+            <Stack
+              className="stack"
+              align="stretch"
+              sx={(theme) => ({
+                backgroundColor:
+                  theme.colorScheme === "dark"
+                    ? theme.colors.dark[8]
+                    : theme.colors.gray[0],
+                // height: "100%",
+              })}
+            >
+              <Routes>
+                {/* general-pages */}
+                <Route path="/" element={<Start />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/challenges" element={<Challenges />} />
+                <Route path="/challenge/:id" element={<Challenge />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/contact-us" element={<ContactUs />} />
+                <Route path="/sign-up" element={<Signup />} />
 
-                  {/* Other */}
-                  <Route path="/404" element={<PageNotFound />} />
-                  <Route path="/privacypolicy" element={<Privacy />} />
-                  <Route path="*" element={<Navigate to="/404" replace />} />
-                  <Route path="/logout" element={<Logout />} />
-                </Routes>
-              </Stack>
-              <Footer />
-              <CheckAuthorization />
-            </Router>
-          </NotificationsProvider>
-        </MantineProvider>
-      </ColorSchemeProvider>
+                {/* Other */}
+                <Route path="/404" element={<PageNotFound />} />
+                <Route path="/privacypolicy" element={<Privacy />} />
+                <Route path="*" element={<Navigate to="/404" replace />} />
+                <Route path="/logout" element={<Logout />} />
+              </Routes>
+            </Stack>
+            <Footer />
+            <CheckAuthorization />
+          </Router>
+        </NotificationsProvider>
+      </MantineProvider>
     </React.Fragment>
   );
 }
