@@ -37,6 +37,7 @@ function App() {
             <Stack
               justify="space-between"
               className="stack"
+              align="stretch"
               sx={(theme) => ({
                 backgroundColor:
                   theme.colorScheme === "dark"
@@ -44,8 +45,7 @@ function App() {
                     : theme.colors.gray[0],
                 // height: "100%",
               })}
-            >
-              
+            > 
                 <Routes>
                   {/* general-pages */}
                   <Route path="/" element={<Start />} />
@@ -62,7 +62,6 @@ function App() {
                   <Route path="*" element={<Navigate to="/404" replace />} />
                   <Route path="/logout" element={<Logout />} />
                 </Routes>
-              
             </Stack>
             <Footer />
             <CheckAuthorization />
