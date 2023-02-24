@@ -62,7 +62,7 @@ const data = [
     icon: <IconHeadset size={16} />,
     color: "violet",
     label: "Contact us",
-    toLink: "/contactUs",
+    toLink: "/contact-us",
   },
   {
     icon: <IconLink size={16} />,
