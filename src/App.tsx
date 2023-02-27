@@ -54,7 +54,23 @@ const App = () => {
         toggleColorScheme={toggleColorScheme}
       >
         <MantineProvider
-          theme={{ colorScheme }}
+          theme={{
+            colorScheme,
+            colors: {
+              brand: [
+                "#dfbe5",
+                "#d2edc2",
+                "#b6e09e",
+                "#9ad378",
+                "#7ec753",
+                "#65ad39",
+                "#4e872c",
+                "#36601e",
+                "#1f3a10",
+                "#061500",
+              ],
+            },
+          }}
           withNormalizeCSS
           withGlobalStyles
         >
