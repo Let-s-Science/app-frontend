@@ -1,4 +1,4 @@
-import { ActionIcon } from "@mantine/core";
+import { ActionIcon, Center, Group } from "@mantine/core";
 import {
   IconBrandFacebook,
   IconBrandInstagram,
@@ -13,23 +13,29 @@ const NavbarIcons = ({ setOpened }: NavbarIconsProps) => {
   const closeDrawer = () => setOpened(false);
   return (
     <>
-      <ActionIcon component="a" href="/" onClick={closeDrawer}>
+    <Center>
+
+    <Group>
+
+      <ActionIcon component="a" href="https://www.facebook.com/letsscience.eu" onClick={closeDrawer}>
         <IconBrandFacebook />
       </ActionIcon>
       <ActionIcon
         component="a"
         href="https://www.instagram.com/letsscience.eu/"
         onClick={closeDrawer}
-      >
+        >
         <IconBrandInstagram />
       </ActionIcon>
       <ActionIcon
         component="a"
         href="https://www.tiktok.com/@letsscience.eu"
         onClick={closeDrawer}
-      >
+        >
         <IconBrandTiktok />
       </ActionIcon>
+        </Group>
+          </Center>
     </>
   );
 };
