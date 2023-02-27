@@ -11,13 +11,21 @@ import {
   Button,
   Group,
   NumberInput,
-  Container,
-  Center,
+  Alert,
 } from "@mantine/core";
+import { IconAlertCircle } from "@tabler/icons";
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { useClient } from "../hooks/useClient";
+
+const oneDayAgo = (date: Date): boolean => {
+  const day = 1000 * 60 * 60 * 24;
+  const dayAgo = Date.now() - day;
+
+  // @ts-ignore
+  return date > dayAgo;
+};
 
 const ChallengeProgress = () => {
   const { id } = useParams();
@@ -62,12 +70,26 @@ const ChallengeProgress = () => {
     return <Navigate to="/challenges" />;
   }
 
+  const updated_at = new Date(
+    challengeProgress.updated_at ?? new Date(1995, 11, 17, 3, 24, 0)
+  );
+  const showChallengeAlert =
+    challenge.type === ChallengeType.DAILY_CHALLENGE && oneDayAgo(updated_at);
+
   return (
     <Stack align="center">
       <Title>{challenge.title}</Title>
       <Text>{challenge.description}</Text>
       {challenge.type === ChallengeType.COUNTER && (
         <NumberInput value={progress} onChange={(e) => setProgress(e ?? 0)} />
+      )}
+      {showChallengeAlert && (
+        <Alert
+          icon={<IconAlertCircle size={16} />}
+          title="Can't submit progress today"
+        >
+          This challenge has already been completed today. Come back tomorrow!
+        </Alert>
       )}
       <Stack>
         <Group position="right" mt="xl">
@@ -86,11 +108,15 @@ const ChallengeProgress = () => {
             Add Progress
           </Button>
         )}
-        {challenge.type === ChallengeType.DAILY_CHALLENGE && (
-          <Button loading={submitted === false} onClick={() => addProgress(1)}>
-            Add Progress
-          </Button>
-        )}
+        {challenge.type === ChallengeType.DAILY_CHALLENGE &&
+          !showChallengeAlert && (
+            <Button
+              loading={submitted === false}
+              onClick={() => addProgress(1)}
+            >
+              Add Progress
+            </Button>
+          )}
       </Stack>
     </Stack>
   );
