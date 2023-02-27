@@ -1,5 +1,5 @@
 import { ActionIcon, Center, Group, Paper } from "@mantine/core";
-import { IconHome, IconTargetArrow, IconUser } from "@tabler/icons";
+import { IconHome, IconQuestionCircle, IconTargetArrow, IconUser } from "@tabler/icons";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -17,6 +17,15 @@ const Footer = () => {
           variant="transparent"
         >
           <IconTargetArrow size={26} />
+        </ActionIcon>
+        <ActionIcon
+        component={Link}
+        to="/quiz"
+        size="lg"
+        radius="xl"
+        variant="transparent"
+       >
+        <IconQuestionCircle size={26}/>
         </ActionIcon>
         <ActionIcon
           component={Link}
