@@ -47,7 +47,7 @@ const Challenges = () => {
   });
 
   return (
-    <Accordion multiple value={value} onChange={valueHandlers.setState}>
+    <Accordion style={{width: "97vw"}} multiple value={value} onChange={valueHandlers.setState}>
       {userChallengeList.length > 0 && (
         <Accordion.Item value="My Challenges">
           <Accordion.Control>{"My Challenges"}</Accordion.Control>
