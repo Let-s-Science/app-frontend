@@ -37,6 +37,7 @@ const Quiz = () => {
   const [questionLength, setQuestionLength] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [verified, setVerified] = useState<number>(-1);
+  const [answerIsClicked, setAnswerIsClicked] = useState<boolean>(false);
 
   const onCheck = (correct: boolean) => {
     if (correct) {
@@ -53,12 +54,15 @@ const Quiz = () => {
     //   setUserChallenges(resp);
     //   valueHandlers.append("My Challenges");
     // });
+  }, []);
+
+  useEffect(() => {
     if (quizzes !== null) {
       setQuestionLength(quizzes.questions.length);
     } else {
       setQuestionLength(0);
     }
-  }, []);
+  }, [quizzes]);
 
   const useStyles = createStyles((theme) => ({
     card: {
@@ -105,20 +109,7 @@ const Quiz = () => {
     },
   }));
 
-  const mockdata = [
-    { label: "4 passengers", icon: IconUsers },
-    { label: "100 km/h in 4 seconds", icon: IconGauge },
-    { label: "Automatic gearbox", icon: IconManualGearbox },
-    { label: "Electric", icon: IconGasStation },
-  ];
-
   const { classes } = useStyles();
-  // const features = mockdata.map((feature, index) => (
-  //   <Center key={feature.label}>
-  //     <feature.icon size={18} className={classes.icon} stroke={1.5} />
-  //     <Text size="xs">{feature.label}</Text>
-  //   </Center>
-  // ));
 
   const renderCardQuizz = (
     item: APIQuizQuestion,
@@ -128,10 +119,6 @@ const Quiz = () => {
     return (
       <React.Fragment key={index}>
         <Card withBorder radius="md" className={classes.card}>
-          {/* <Card.Section className={classes.imageSection}>
-            <Image src="https://i.imgur.com/ZL52Q2D.png" alt="Tesla Model S" />
-          </Card.Section> */}
-
           <Group position="apart" mt="md">
             <div>
               <Text weight={500}>{item.question}</Text>
@@ -155,6 +142,8 @@ const Quiz = () => {
                   data={item.data as MultipleChoiceQuestion}
                   verified={verified >= index}
                   onCheck={onCheck}
+                  onChange={(i) => setAnswerIsClicked(i !== null)}
+                  answerIsClicked={answerIsClicked}
                 />
               )}
               {item.data.type === "Numeric" && (
@@ -163,10 +152,6 @@ const Quiz = () => {
               {item.data.type === "TrueOrFalse" && (
                 <Quiz_TrueOrFalse data={item.data as TrueOrFalseQuestion} />
               )}
-              {/* {item.data.map((item, index) =>
-                renderAnswers(item, index, questionLength)
-              )} */}
-              {/* {features} */}
             </Group>
           </Card.Section>
 
@@ -191,6 +176,7 @@ const Quiz = () => {
                 onClick={() => setVerified(index)}
                 radius="xl"
                 style={{ flex: 1 }}
+                disabled={!answerIsClicked}
               >
                 Check
               </Button>
@@ -216,9 +202,12 @@ const Quiz = () => {
     <React.Fragment>
       <h1>Quizzes!</h1>
       <h3>Das Quiz: {quizzes.title}</h3>
-      {quizzes.questions.map((item, index) =>
-        renderCardQuizz(item, index, questionLength)
-      )}
+      {verified === quizzes.questions.length - 1 && <p>Das Quiz ist fertig</p>}
+      {
+        quizzes.questions.map((item, index) =>
+          renderCardQuizz(item, index, questionLength)
+        )[verified + 1] //TODO: Hier arbeiten!!
+      }
       {/* <p>{quizzes}</p> */}
     </React.Fragment>
   );

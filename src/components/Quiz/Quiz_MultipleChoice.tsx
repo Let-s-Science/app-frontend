@@ -8,15 +8,24 @@ interface Quiz_MultipleChoiceProps {
   data: MultipleChoiceQuestion;
   verified: boolean;
   onCheck: (correct: boolean) => any;
+  onChange?: (index: number | null) => any;
+  answerIsClicked: boolean;
 }
 function Quiz_MultipleChoice(props: Quiz_MultipleChoiceProps) {
   const [ClickButton, setClickButton] = useState<number | null>(null);
   const [isClicked, setIsClicked] = useState<ButtonProps["variant"]>("outline");
-  const [isChecked, setIsChecked] = useState("blue");
+  const [isDisabled, setisDisabled] = useState<boolean>(false);
+  // const [answerIsClicked, setAnswerIsClicked] = useState<boolean>(false);
 
   const check = () => {
     props.onCheck(ClickButton === props.data.correct_answer);
   };
+
+  useEffect(() => {
+    if (props.onChange) {
+      props.onChange(ClickButton);
+    }
+  }, [ClickButton]);
 
   const onClickButton = (index: number) => {
     if (index === ClickButton) {
@@ -34,6 +43,8 @@ function Quiz_MultipleChoice(props: Quiz_MultipleChoiceProps) {
   useEffect(() => {
     if (props.verified) {
       check();
+      //Alle Antwortmöglichkeiten auf disabled packen
+      setisDisabled(true);
     }
   }, [props.verified]);
 
@@ -49,6 +60,7 @@ function Quiz_MultipleChoice(props: Quiz_MultipleChoiceProps) {
               radius="md"
               size="lg"
               onClick={() => onClickButton(index)}
+              disabled={isDisabled}
             >
               {item}
             </Button>
