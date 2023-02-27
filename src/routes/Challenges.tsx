@@ -6,6 +6,7 @@ import ChallengeProgressCard from "../components/ChallengeProgressCard";
 import { Accordion, Grid } from "@mantine/core";
 import colorMap from "../utils/colorMap";
 import { useListState } from "@mantine/hooks";
+import { isDone } from "../utils/challenge";
 
 const getCategories = (challenges: Challenge[]) => {
   const l = [...new Set(challenges.flatMap((ch) => ch.category))];
@@ -39,6 +40,9 @@ const Challenges = () => {
     if (!challenge) {
       return;
     }
+    if (isDone(challenge, userChallenge)) {
+      return;
+    }
     return (
       <Grid.Col span={6} key={key}>
         <ChallengeProgressCard chall={challenge} user_chall={userChallenge} />
@@ -63,6 +67,11 @@ const Challenges = () => {
             <Grid>
               {challenges
                 .filter((x) => x.category === category)
+                .filter(
+                  (x) =>
+                    userChallenges.filter((y) => y.challenge_id === x.id)
+                      .length === 0
+                )
                 .map((ch, key) => (
                   <Grid.Col span={6} key={key}>
                     <ChallengeCard challenge={ch} colorMap={colors} />

@@ -4,6 +4,7 @@ import {
   UserChallenge,
 } from "@lets-science/letsscience-client";
 import { Badge, Card, Group, Progress, Stack, Text } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 interface ChallengeProgressCardProps {
   chall: Challenge;
@@ -16,7 +17,13 @@ const ChallengeProgressCard = ({
 }: ChallengeProgressCardProps) => {
   const progress = (user_chall.progress / chall.goal) * 100;
   return (
-    <Card style={{ height: "100%" }} withBorder radius="md">
+    <Card
+      component={Link}
+      to={`/challenge/${chall.id}/progress`}
+      style={{ height: "100%" }}
+      withBorder
+      radius="md"
+    >
       <Stack style={{ height: "inherit" }} justify="space-between">
         <div>
           {chall.type === ChallengeType.DAILY_CHALLENGE && (
