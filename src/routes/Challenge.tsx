@@ -45,7 +45,7 @@ const ChallengeView = () => {
   }
 
   return (
-    <Stack>
+    <Stack align="center">
       <Title>{challenge.title}</Title>
       <Text>{challenge.description}</Text>
       <Group position="right" mt="xl">
