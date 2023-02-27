@@ -30,7 +30,7 @@ import Privacy from "./routes/Privacy";
 import Signup from "./routes/Signup";
 import CheckAuthorization from "./components/CheckAuthorization";
 import Logout from "./components/Logout";
-import Challenge from "./routes/Challenge";
+import ChallengeView from "./routes/Challenge";
 import Quiz from "./routes/Quiz";
 
 const App = () => {
@@ -77,7 +77,7 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/challenges" element={<Challenges />} />
-                    <Route path="/challenge/:id" element={<Challenge />} />
+                    <Route path="/challenge/:id" element={<ChallengeView />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/contact-us" element={<ContactUs />} />
                     <Route path="/sign-up" element={<Signup />} />
