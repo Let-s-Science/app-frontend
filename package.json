@@ -11,11 +11,13 @@
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
     "@lets-science/letsscience-client": "^0.2.1",
+    "@mantine/carousel": "^5.10.5",
     "@mantine/core": "^5.10.0",
     "@mantine/form": "^5.10.0",
     "@mantine/hooks": "^5.10.0",
     "@mantine/notifications": "^5.10.2",
     "@tabler/icons": "^1.119.0",
+    "embla-carousel-react": "^7.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-jazzicon": "^1.0.4",

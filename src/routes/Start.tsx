@@ -4,6 +4,7 @@ import { StatsRing } from "../components/StatsRing";
 import { useClient } from "../hooks/useClient";
 import { berechneFortschritt, berechneLevel } from "../util";
 import { Card, Stack, Title } from "@mantine/core";
+import ChallengeProgressCarousel from "../components/ChallengeProgressCarousel";
 
 const Start = () => {
   const client = useClient();
@@ -57,6 +58,7 @@ const Start = () => {
         </Stack>
       </div>
       <Title order={2}>Your Challenges</Title>
+      <ChallengeProgressCarousel />
       <Title order={2}>Your Quiz</Title>
       <Title order={2}>Contact us!</Title>
     </Stack>
