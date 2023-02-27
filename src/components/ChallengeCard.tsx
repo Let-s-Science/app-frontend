@@ -1,5 +1,6 @@
 import { Challenge } from "@lets-science/letsscience-client";
 import { Badge, Card, Group, Text } from "@mantine/core";
+import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 interface ChallengeCardProps {
@@ -9,7 +10,12 @@ interface ChallengeCardProps {
 
 const ChallengeCard = ({ challenge, colorMap }: ChallengeCardProps) => {
   return (
-    <Card withBorder radius="md">
+    <Card
+      withBorder
+      radius="md"
+      component={Link}
+      to={`/challenge/${challenge.id}`}
+    >
       <Group position="apart">
         <Logo />
         <Badge color={colorMap[challenge.category]}>{challenge.category}</Badge>

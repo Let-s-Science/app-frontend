@@ -48,12 +48,14 @@ const Challenges = () => {
 
   return (
     <Accordion multiple value={value} onChange={valueHandlers.setState}>
-      <Accordion.Item value="My Challenges">
-        <Accordion.Control>{"My Challenges"}</Accordion.Control>
-        <Accordion.Panel>
-          <Grid>{userChallengeList}</Grid>
-        </Accordion.Panel>
-      </Accordion.Item>
+      {userChallengeList.length > 0 && (
+        <Accordion.Item value="My Challenges">
+          <Accordion.Control>{"My Challenges"}</Accordion.Control>
+          <Accordion.Panel>
+            <Grid>{userChallengeList}</Grid>
+          </Accordion.Panel>
+        </Accordion.Item>
+      )}
       {categories.map((category, index) => (
         <Accordion.Item value={category} key={index}>
           <Accordion.Control>{category}</Accordion.Control>
