@@ -15,10 +15,19 @@ function Quiz_MultipleChoice(props: Quiz_MultipleChoiceProps) {
   const [ClickButton, setClickButton] = useState<number | null>(null);
   const [isClicked, setIsClicked] = useState<ButtonProps["variant"]>("outline");
   const [isDisabled, setisDisabled] = useState<boolean>(false);
+  const [colorButton, setColorButton] = useState<ButtonProps["color"]>("");
+  const [colorButtonFalse, setColorButtonFalse] =
+    useState<ButtonProps["color"]>("");
   // const [answerIsClicked, setAnswerIsClicked] = useState<boolean>(false);
 
   const check = () => {
     props.onCheck(ClickButton === props.data.correct_answer);
+
+    // if (props.verified && ClickButton === props.data.correct_answer) {
+    if (props.verified) {
+      setColorButton("green");
+      setColorButtonFalse("red");
+    }
   };
 
   useEffect(() => {
@@ -44,7 +53,7 @@ function Quiz_MultipleChoice(props: Quiz_MultipleChoiceProps) {
     if (props.verified) {
       check();
       //Alle Antwortmöglichkeiten auf disabled packen
-      setisDisabled(true);
+      // setisDisabled(true);
     }
   }, [props.verified]);
 
@@ -54,17 +63,33 @@ function Quiz_MultipleChoice(props: Quiz_MultipleChoiceProps) {
       {/* <Center> */}
       <Grid columns={24}>
         {props.data.answers.map((item: String, index: number) => (
-          <Grid.Col key={index} span={12}>
-            <Button
-              variant={index === ClickButton ? "filled" : "outline"}
-              radius="md"
-              size="lg"
-              onClick={() => onClickButton(index)}
-              disabled={isDisabled}
-            >
-              {item}
-            </Button>
-          </Grid.Col>
+          // <Grid.Col key={index} span={12}>
+          <Button
+            m="0.2rem"
+            mx="3vw"
+            variant={index === ClickButton ? "filled" : "outline"}
+            radius="md"
+            size="md"
+            onClick={() => {
+              if (colorButton !== "green") {
+                onClickButton(index);
+              }
+            }}
+            disabled={isDisabled}
+            color={
+              index === props.data.correct_answer
+                ? colorButton
+                : index === ClickButton
+                ? colorButtonFalse
+                : ""
+            }
+            // : index === ClickButton
+            // ? "red"
+            // : ""
+          >
+            {item}
+          </Button>
+          // </Grid.Col>
         ))}
       </Grid>
       {/* </Center> */}
