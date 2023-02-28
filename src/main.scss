@@ -89,3 +89,12 @@ h1{
     margin-left: 10vw;
     margin-right: 10vw;
 }
+.wieduwillst{
+    animation: animateIcon 2s 4;
+}
+@keyframes animateIcon {
+    0% {height:sm}
+    25% {height: md}
+    50% {height: lg}
+    100% {height: xl}
+}

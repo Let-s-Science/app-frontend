@@ -14,9 +14,15 @@ import {
   createStyles,
   Group,
   Image,
+  Progress,
   Text,
+  Title,
+  Transition,
 } from "@mantine/core";
+import { _Center } from "@mantine/core/lib/Center/Center";
 import {
+  IconCheck,
+  IconCircleCheck,
   IconGasStation,
   IconGauge,
   IconManualGearbox,
@@ -24,19 +30,26 @@ import {
 } from "@tabler/icons";
 import React from "react";
 import { Fragment, useEffect, useState } from "react";
+import Countdown from "../components/Countdown";
+import { ProgressRing } from "../components/ProgressRing";
 import Quiz_MultipleChoice from "../components/Quiz/Quiz_MultipleChoice";
 import MultipleChoice from "../components/Quiz/Quiz_MultipleChoice";
 import Quiz_Numeric from "../components/Quiz/Quiz_Numeric";
 import Quiz_TrueOrFalse from "../components/Quiz/Quiz_TrueOrFalse";
 import { useClient } from "../hooks/useClient";
+// import ProgressRing from "../components/ProgressRing";
 
 const Quiz = () => {
   const client = useClient();
   const [quizzes, setQuizzes] = useState<APIQuiz | null>(null);
-  const id = "098a8b8c-b645-11ed-8245-77a17c35e614";
+  const id = "3ef19646-b6f2-11ed-85eb-2309bacec01a";
   const [questionLength, setQuestionLength] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [verified, setVerified] = useState<number>(-1);
+  const [answerIsClicked, setAnswerIsClicked] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(false);
+  const [buttonName, setButtonName] = useState<boolean>(false);
+  const [opened, setOpened] = useState<boolean>(false);
 
   const onCheck = (correct: boolean) => {
     if (correct) {
@@ -53,12 +66,25 @@ const Quiz = () => {
     //   setUserChallenges(resp);
     //   valueHandlers.append("My Challenges");
     // });
+  }, []);
+
+  useEffect(() => {
     if (quizzes !== null) {
       setQuestionLength(quizzes.questions.length);
     } else {
       setQuestionLength(0);
     }
-  }, []);
+  }, [quizzes]);
+
+  const checkButtonOnClick = (index: number) => {
+    setButtonName(!buttonName);
+    if (checked) {
+      setVerified(index);
+      setChecked(false);
+    } else {
+      setChecked(true);
+    }
+  };
 
   const useStyles = createStyles((theme) => ({
     card: {
@@ -105,20 +131,7 @@ const Quiz = () => {
     },
   }));
 
-  const mockdata = [
-    { label: "4 passengers", icon: IconUsers },
-    { label: "100 km/h in 4 seconds", icon: IconGauge },
-    { label: "Automatic gearbox", icon: IconManualGearbox },
-    { label: "Electric", icon: IconGasStation },
-  ];
-
   const { classes } = useStyles();
-  // const features = mockdata.map((feature, index) => (
-  //   <Center key={feature.label}>
-  //     <feature.icon size={18} className={classes.icon} stroke={1.5} />
-  //     <Text size="xs">{feature.label}</Text>
-  //   </Center>
-  // ));
 
   const renderCardQuizz = (
     item: APIQuizQuestion,
@@ -128,33 +141,32 @@ const Quiz = () => {
     return (
       <React.Fragment key={index}>
         <Card withBorder radius="md" className={classes.card}>
-          {/* <Card.Section className={classes.imageSection}>
-            <Image src="https://i.imgur.com/ZL52Q2D.png" alt="Tesla Model S" />
-          </Card.Section> */}
-
           <Group position="apart" mt="md">
             <div>
               <Text weight={500}>{item.question}</Text>
-              <Text size="xs" color="dimmed">
+              {/* <Text size="xs" color="dimmed">
                 Das ist noch eine Mockup Zeile
-              </Text>
+              </Text> */}
             </div>
             <Badge variant="outline">
-              {index + 1} / {length}
+              Question {index + 1} / {length}
             </Badge>
           </Group>
 
           <Card.Section className={classes.section} mt="md">
             <Text size="sm" color="dimmed" className={classes.label}>
-              Antwortmöglichkeiten
+              Answer options
             </Text>
 
             <Group spacing={8} mb={-8}>
               {item.data.type === "MultipleChoice" && (
                 <Quiz_MultipleChoice
                   data={item.data as MultipleChoiceQuestion}
-                  verified={verified >= index}
+                  // verified={verified >= index}
+                  verified={checked}
                   onCheck={onCheck}
+                  onChange={(i) => setAnswerIsClicked(i !== null)}
+                  answerIsClicked={answerIsClicked}
                 />
               )}
               {item.data.type === "Numeric" && (
@@ -163,10 +175,6 @@ const Quiz = () => {
               {item.data.type === "TrueOrFalse" && (
                 <Quiz_TrueOrFalse data={item.data as TrueOrFalseQuestion} />
               )}
-              {/* {item.data.map((item, index) =>
-                renderAnswers(item, index, questionLength)
-              )} */}
-              {/* {features} */}
             </Group>
           </Card.Section>
 
@@ -183,16 +191,17 @@ const Quiz = () => {
                   sx={{ lineHeight: 1 }}
                   mt={3}
                 >
-                  possible Points
+                  possible points
                 </Text>
               </div>
 
               <Button
-                onClick={() => setVerified(index)}
+                onClick={() => checkButtonOnClick(index)}
                 radius="xl"
                 style={{ flex: 1 }}
+                disabled={!answerIsClicked}
               >
-                Check
+                {buttonName === true ? "Next Question" : "Check"}
               </Button>
               {/* Mantine Disabled button wenn noch nichts angeklicked is */}
             </Group>
@@ -202,8 +211,67 @@ const Quiz = () => {
     );
   };
 
-  const renderAnswers = (item: QuestionType, index: number, length: number) => {
-    return <React.Fragment>wfwfewef</React.Fragment>;
+  const berechneProgress = (score: number, max: number) => {
+    return 100 - ((max - score) * 100) / max;
+  };
+  const berechneColor = (score: number, max: number) => {
+    if (max - (max - score) > Math.floor(max / 2)) {
+      return "green";
+    } else if (max - (max - score) <= Math.floor(max / 2) && score > 0) {
+      return "orange";
+    } else {
+      return "red";
+    }
+  };
+
+  const berechneDatum = () => {
+    const nextDay = new Date();
+    nextDay.setDate(nextDay.getDate() + 1);
+    nextDay.setHours(10, 0, 0, 0);
+    return nextDay;
+  };
+
+  const renderAfterQuiz = () => {
+    return (
+      <React.Fragment>
+        {/* <Transition
+          mounted={true}
+          duration={3000}
+          transition={"pop-bottom-left"}
+        >
+          {() => <IconCheck size="sm" color="lightgreen" />}
+        </Transition> */}
+        {/* <div className="wieduwillst"> */}
+        <Center>
+          <IconCheck size="11rem" color="lightgreen" />
+        </Center>
+        {/* </div> */}
+        <Title>Done!</Title>
+        <Center>
+          <h3>Your resulting points:</h3>
+        </Center>
+        <Center>
+          {/* //hdbhwqdf */}
+          <ProgressRing
+            data={[
+              {
+                label: "Your points",
+                stats: "" + score + " / " + questionLength + "",
+                progress: berechneProgress(score, questionLength),
+                color: berechneColor(score, questionLength),
+                icon: "up",
+              },
+            ]}
+          />
+        </Center>
+        <Center>
+          <h4>Next daily Challenge in:</h4>
+        </Center>
+        <Center>
+          <Countdown />
+        </Center>
+      </React.Fragment>
+    );
   };
 
   {
@@ -214,11 +282,14 @@ const Quiz = () => {
   }
   return (
     <React.Fragment>
-      <h1>Quizzes!</h1>
-      <h3>Das Quiz: {quizzes.title}</h3>
-      {quizzes.questions.map((item, index) =>
-        renderCardQuizz(item, index, questionLength)
-      )}
+      <h1>Your daily Quiz!</h1>
+      <h3>The Quiz today is about: "{quizzes.title}"</h3>
+      {verified === quizzes.questions.length - 1 && renderAfterQuiz()}
+      {
+        quizzes.questions.map((item, index) =>
+          renderCardQuizz(item, index, questionLength)
+        )[verified + 1] //TODO: Hier arbeiten!!
+      }
       {/* <p>{quizzes}</p> */}
     </React.Fragment>
   );
