@@ -2,6 +2,7 @@ import {
   Button,
   Center,
   Group,
+  Stack,
   Switch,
   Title,
   useMantineColorScheme,
@@ -9,12 +10,13 @@ import {
 } from "@mantine/core";
 import { IconLogout, IconMoonStars, IconSun } from "@tabler/icons";
 import { Link } from "react-router-dom";
+import LanguageButton from "../components/LanguageButton";
 
 const Settings = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
   return (
-    <>
+    <Stack align="center">
       <Title order={1}>Settings</Title>
       <Group position="center" my={30}>
         <Switch
@@ -31,17 +33,16 @@ const Settings = () => {
           }
         />
       </Group>
-      <Center>
-        <Link to="/logout">
-          <Button>
-            <Group position="apart">
-              <IconLogout />
-              Logout
-            </Group>
-          </Button>
-        </Link>
-      </Center>
-    </>
+      <Link to="/logout">
+        <Button>
+          <Group position="apart">
+            <IconLogout />
+            Logout
+          </Group>
+        </Button>
+      </Link>
+      <LanguageButton />
+    </Stack>
   );
 };
 
