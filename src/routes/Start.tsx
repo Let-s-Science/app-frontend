@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { StatsRing } from "../components/StatsRing";
 import { useClient } from "../hooks/useClient";
 import { berechneFortschritt, berechneLevel } from "../util";
-import { Card, Stack, Title } from "@mantine/core";
+import { Card, LoadingOverlay, Stack, Title } from "@mantine/core";
 import ChallengeProgressCarousel from "../components/ChallengeProgressCarousel";
+import React from "react";
 
 const Start = () => {
   const client = useClient();
   const [user, setUser] = useState<User | null>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -27,7 +29,13 @@ const Start = () => {
   }, []);
 
   if (user === null) {
-    return <p>Couldn't load data</p>;
+    // setVisible(true);
+    return (
+      <React.Fragment>
+        {/* <LoadingOverlay visible={visible} overlayBlur={2} /> */}
+        <p>Couldn't load data</p>
+      </React.Fragment>
+    );
   }
 
   return (
@@ -59,8 +67,10 @@ const Start = () => {
       </div>
       <Title order={2}>Your Challenges</Title>
       <ChallengeProgressCarousel />
-      <Title order={2}>Your Quiz</Title>
-      <Title order={2}>Contact us!</Title>
+      <br />
+      <Title order={2}>Check up your daily Quiz!</Title>
+      <br />
+      {/* <Title order={2}>Contact us!</Title> */}
     </Stack>
   );
 };
