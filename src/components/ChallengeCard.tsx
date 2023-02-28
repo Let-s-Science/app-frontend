@@ -17,7 +17,18 @@ const ChallengeCard = ({ challenge, colorMap }: ChallengeCardProps) => {
       to={`/challenge/${challenge.id}`}
     >
       <Group position="apart">
-        <Logo />
+        {challenge.category === "CO2" && (
+          <img src="../../public/blume_gold.svg"  height="54vh" width="54vh"/>
+        )}
+        {challenge.category === "Waste" &&(
+        <img src="../../public/tonne_gold.svg" height="54vh" width="54vh"/>
+        )}
+        {challenge.category === "Water" &&(
+        <img src="../../public/giesskanne_gold.svg"  height="54vh" width="54vh"/>
+        )}
+        {challenge.category === "Energy" &&(
+        <img src="../../public/gluehbirne_gold.svg" height="54vh" width="54vh"/>
+        )}
         <Badge color={colorMap[challenge.category]}>{challenge.category}</Badge>
       </Group>
       <Text size="lg" weight={500} mt="md">
