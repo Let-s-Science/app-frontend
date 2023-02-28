@@ -20,6 +20,7 @@ import {
   Transition,
 } from "@mantine/core";
 import { _Center } from "@mantine/core/lib/Center/Center";
+import { useLocalStorage } from "@mantine/hooks";
 import {
   IconCheck,
   IconCircleCheck,
@@ -232,6 +233,11 @@ const Quiz = () => {
   };
 
   const renderAfterQuiz = () => {
+    //Backend call für Score
+    client.user.postApiUserScore({ score }).then((resp) => {
+      console.log(resp);
+    });
+    localStorage.setItem("dailyquiz", "done");
     return (
       <React.Fragment>
         {/* <Transition
@@ -265,7 +271,7 @@ const Quiz = () => {
           />
         </Center>
         <Center>
-          <h4>Next daily Challenge in:</h4>
+          <h4>Next daily quiz in:</h4>
         </Center>
         <Center>
           <Countdown />
@@ -284,12 +290,12 @@ const Quiz = () => {
     <React.Fragment>
       <h1>Your daily Quiz!</h1>
       <h3>The Quiz today is about: "{quizzes.title}"</h3>
-      {verified === quizzes.questions.length - 1 && renderAfterQuiz()}
-      {
-        quizzes.questions.map((item, index) =>
-          renderCardQuizz(item, index, questionLength)
-        )[verified + 1] //TODO: Hier arbeiten!!
-      }
+      {verified === quizzes.questions.length - 1 ||
+      localStorage.getItem("dailyquiz") === "done"
+        ? renderAfterQuiz()
+        : quizzes.questions.map((item, index) =>
+            renderCardQuizz(item, index, questionLength)
+          )[verified + 1]}
       {/* <p>{quizzes}</p> */}
     </React.Fragment>
   );
